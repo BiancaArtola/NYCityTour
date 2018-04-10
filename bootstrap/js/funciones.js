@@ -16,7 +16,7 @@ function initMap() {
 
 function redireccionar()
 {
-  window.location.href="https://astreiten.github.io/CiudadesTuristicas/bootstrap/index.html";
+  window.location.href="https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/index.html";
 }
 
 function encontrarChequeado(){
@@ -65,7 +65,7 @@ function encontrarChequeado(){
 
 function filtrarRecorridos(movilidad_valor, tarifa_valor, categoria_valor, duracion_valor){
   var xmlhttp = new XMLHttpRequest();
-  var url="https://astreiten.github.io/CiudadesTuristicas/bootstrap/js/recorridos.json";
+  var url="https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/js/recorridos.json";
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
@@ -146,23 +146,23 @@ function mostrarRecorridos(cumplen)
         var result;
         if (str=="Recorrido para bicicletas")
         {
-          result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/bicicletas.html");
+          result=str.link("https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/bicicletas.html");
         }
         else
         {
           if(str=="Recorrido juvenil")
           {
-            result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/juvenil.html");
+            result=str.link("https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/juvenil.html");
           }
           else
           {
             if(str=="Recorrido Midtown-Manhattan")
             {
-              result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/mid.html");
+              result=str.link("https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/mid.html");
             }
             else
             {
-              result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/museos.html");
+              result=str.link("https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/museos.html");
             }
           }
         }

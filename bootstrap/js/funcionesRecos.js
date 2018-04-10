@@ -14,7 +14,7 @@ function oyentePaginaRecorrido(){
 
 function obtenerInformacionJSON(){
   var xmlhttp = new XMLHttpRequest();
-  var url="https://astreiten.github.io/CiudadesTuristicas/bootstrap/js/recorridos.json";
+  var url="https://uns-iaw-2018-com10.github.io/NYCityTour/bootstrap/js/recorridos.json";
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
