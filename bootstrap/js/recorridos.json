@@ -1,0 +1,360 @@
+{
+	"recorridos" : [
+	{
+		"nombre":"Museos Nueva York",
+		"tiempo": 3,
+		"categoria":"cultural",
+		"tarifa": 20,
+		"descripcion": "Un recorrido rebosante de cultura, haciendo foco en el arte y la historia natural. Desde fósiles milenarios hasta obras contemporáneas, este paseo quedará por siempre en su memoria.",
+		"puntos": 
+		[
+			{
+				"nombre":"Metropolitan Museum of Art",
+				"direccion":"1000 5th Ave, New York, NY 10028, EE. UU.",
+				"imagen": "https://s1.citypass.net/img-6d762f9/products/new-york/attractions/met/gallery/met-gallery-greathall.jpg",
+				"coordenadas":[
+					
+					"40.780556",
+					"-73.974722"
+					
+				]
+			},
+
+			{
+				"nombre":"Museo Americano de Historia Natural",
+				"direccion":"Central Park West & 79th St, New York, NY 10024, EE. UU.",
+				"imagen": "https://www.blogdenuevayork.es/wp-content/uploads/2017/02/museo-americano-de-historia-natural-nueva-york.jpg",
+				"coordenadas":[
+					
+					"40.7813241",
+					"-73.9761769"
+					
+					]
+			},
+
+			{
+				"nombre":"Neue Galerie",
+				"direccion":"1048 5th Ave, New York, NY 10028, EE. UU.",
+				"imagen": "http://webresizer.com/session/PUXOCFYzC0yoj9bvvf7TzqwMSfIR24BG/result.jpg?1523390042.27357",
+				"coordenadas":[
+					
+					"40.7815176",
+					"-73.9630838"
+					
+				]
+			}
+			
+		
+		],
+		"apto":[
+		  "auto","moto"
+		]
+	},
+	{
+		"nombre":"Recorrido juvenil",
+		"tiempo": 4,
+		"categoria":"ninos",
+		"tarifa": 10,
+		"descripcion": "Para los mas jóvenes, este divertido recorrido nos lleva por los lugares que todos sueñan conocer. Entretenimiento asegurado.",
+		"puntos": 
+		[
+			{
+				"nombre":"Zoologico del Central Park",
+				"direccion":"E 64th St & 5th Ave, New York, NY 10021, EE. UU.",
+				"imagen": "https://www.mejores-planes-viaje-nueva-york.com/wp-content/uploads/2013/06/Zoo-Central-Park-NY-leones-de-mar.jpg",
+				"coordenadas":[
+					
+					"40.767778",
+					"-73.9740222"
+					
+				]
+			},
+
+			{
+				"nombre":"Top of the Rock",
+				"direccion":"30 Rockefeller Plaza, New York, NY 10020, EE. UU.",
+				"imagen": "https://s1.citypass.net/img-712d02c/products/new-york/attractions/toprock/gallery/toprock-gallery-deck-view.jpg",
+				"coordenadas":[
+					
+					"40.7579114",
+					"-73.9888795"
+					
+					]
+			},
+
+			{
+				"nombre":"Times Square",
+				"direccion":"Manhattan, Nueva York 10036, EE. UU.",
+				"imagen": "https://thumbs.dreamstime.com/b/times-square-new-york-city-los-e-e-u-u-24288839.jpg",
+				"coordenadas":[
+					
+					"40.758895",
+					"-73.9873197"
+					
+				]
+			},
+
+				{
+				"nombre":"Mundo de M&M'S",
+				"direccion":"1600 Broadway, New York, NY 10019, EE. UU.",
+				"imagen": "http://webresizer.com/session/PUXOCFYzC0yoj9bvvf7TzqwMSfIR24BG/result.jpg?1523389453.68401",
+				"coordenadas":[
+					
+					"40.7601999",
+					"-73.9865488"
+					
+				]
+			}
+			
+		
+		],
+		"apto":[
+		  "auto", "colectivo"
+		]
+	},
+	{
+		"nombre":"Recorrido para bicicletas",
+		"tiempo": 5,
+		"categoria":"turistico",
+		"tarifa": 10,
+		"descripcion": "Con el legendario Central Park como eje y figura, este recorrido tiene la cuota justa de naturaleza e historia para ser disfrutado a bordo de una bicicleta. Solo o en familia, esta es una opción sana y vistosa.",
+		"puntos": 
+		[
+			{
+				"nombre":"Balto Statue",
+				"direccion":"East Dr, New York, NY 10022, EE. UU.",
+				"imagen": "https://cdn.viewing.nyc/assets/media/cf514f22475403ee4d373553c7c01e6a/elements/6ffbc7b650ba173552fae172b4b6190e/xl/f500fa04-9414-46cc-8828-5f9853dfac61_2x.jpg",
+				"coordenadas":[
+					
+					40.7764191,
+					-73.9769422
+					
+				]
+			},
+
+			{
+				"nombre":"Fuente Bethesda",
+				"direccion":"Terrace Dr, New York, NY 10024, EE. UU.",
+				"imagen": "https://static.panoramio.com.storage.googleapis.com/photos/large/19394472.jpg",
+				"coordenadas":[
+					
+					"40.7740603",
+					"-73.973019"
+					
+					]
+			},
+
+			{
+				"nombre":"Obelisk Cleopatra's Needle",
+				"direccion":"E 81st Street, New York, NY 10024, EE. UU..",
+				"imagen": "https://keithyorkcity.files.wordpress.com/2012/10/paris-today.jpg",
+				"coordenadas":[
+					
+					"40.7796358",
+					"-73.9675851"
+					
+				]
+			},
+
+				{
+				"nombre":"Jacqueline Kennedy Onassis Reservoir",
+				"direccion":"Nueva York, 10128, EE. UU.",
+				"imagen": "http://photos.wikimapia.org/p/00/00/01/36/22_big.jpg",
+				"coordenadas":[
+					
+					"40.785495",
+					"-73.9664505"
+					
+				]
+			},
+
+			{
+				"nombre":"Belvedere Castle",
+				"direccion":"79th St, New York, NY 10021, EE. UU.",
+				"imagen":"https://upload.wikimedia.org/wikipedia/commons/1/11/BelvedereCastle2.jpg",
+				"coordenadas":[
+					
+					"40.7796163",
+					"-73.9740862"
+					
+				]
+			},
+
+				{
+				"nombre":"Edificio Dakota",
+				"direccion":"1 W 72nd St, New York, NY 10023, EE. UU.",
+				"imagen": "https://media-cdn.tripadvisor.com/media/photo-s/06/42/7a/df/central-park.jpg",
+				"coordenadas":[
+					
+					"40.7765258",
+					"-73.9783295"
+					
+				]
+			},
+
+				{
+				"nombre":"Strawberry Fields",
+				"direccion":"W 72nd St, New York, NY 10019, EE. UU.",
+				"imagen": "http://i.ngenespanol.com/dam/tbg/traveler/lugares/17/12/08/imagine-john-lennon-strawberryfields-centralpark-4.jpg.imgw.1280.1280.jpeg",
+				"coordenadas":[
+					
+					"40.7765254",
+					"-73.9848956"
+					
+				]
+			}
+			
+		
+		],
+		"apto":[
+		  "bicicleta"
+		]
+	}, 
+		{
+		"nombre":"Recorrido Midtown-Manhattan",
+		"tiempo": 5,
+		"categoria":"turistico",
+		"tarifa": 5,
+		"descripcion": "Arte, cultura, religión, historia,deportes y comercio. Existe algún recorrido mas completo que éste? La síntesis de la Ciudad en 11 maravillosas locaciones.",
+		"puntos": 
+		[
+			{
+				"nombre":"Hotel Plaza",
+				"direccion":"768 5th Ave, New York, NY 10019, EE. UU.",
+				"imagen": "https://ep00.epimg.net/economia/imagenes/2016/03/17/actualidad/1458232705_261619_1458233860_noticia_normal.jpg",
+				"coordenadas":[
+					
+					"40.7641756",
+					"-73.9774806"
+					
+				]
+			},
+
+			{
+				"nombre":"Tiffany & Co.",
+				"direccion":"727 5th Ave, New York, NY 10022, EE. UU.",
+				"imagen": "https://media.architecturaldigest.com/photos/55e783d6302ba71f30177e6b/master/pass/dam-images-shopping-2012-12-tiffany-co-tiffany-co-store-01-h670.jpg",
+				"coordenadas":[
+					
+					"40.7641703",
+					"-74.0088192"
+					
+					]
+			},
+
+			{
+				"nombre":"Trump Tower",
+				"direccion":"725 5th Ave, New York, NY 10022, EE. UU.",
+				"imagen": "https://static01.nyt.com/images/2017/08/04/us/04DC-SECRETSERVICE-01/04DC-SECRETSERVICE-01-master768.jpg",
+				"coordenadas":[
+					
+					"40.7624284",
+					"-73.9759827"
+					
+				]
+			},
+
+				{
+				"nombre":"MoMa",
+				"direccion":"11 W 53rd St, New York, NY 10019, EE. UU.",
+				"imagen": "http://www.losapuntesdelviajero.com/wp-content/uploads/2017/03/Visitar-Museo-MoMA-Nueva-York-1.jpg",
+				"coordenadas":[
+					
+					"40.7614327",
+					"-73.9798103"
+					
+				]
+			},
+
+				{
+				"nombre":"St. Patrick Cathedral",
+				"direccion":"5th Ave, New York, NY 10022, EE. UU.",
+				"imagen": "https://buenavibra.es/wp-content/uploads/2015/09/St-Patrick.jpg",
+				"coordenadas":[
+					
+					"40.7584653",
+					"-73.9781814"
+					
+				]
+			},
+
+				{
+				"nombre":"Rockefeller Center",
+				"direccion":"45 Rockefeller Plaza, New York, NY 10111, EE. UU.",
+				"imagen": "https://cdn.vox-cdn.com/thumbor/TcnOOlWn12cFxv1uWrkQ5PK3i9U=/0x0:2000x1333/1200x800/filters:focal(840x507:1160x827)/cdn.vox-cdn.com/uploads/chorus_image/image/57775973/rock_center_christmas_tree.0.jpg",
+				"coordenadas":[
+					
+					"40.7587402",
+					"-73.9808623"
+					
+				]
+			},
+
+			{
+				"nombre":"Waldorf Astoria",
+				"direccion":"301 Park Ave, New York, NY 10022, EE. UU.",
+				"imagen": "https://thenypost.files.wordpress.com/2017/10/030117wa6jm.jpg?quality=90&strip=all",
+				"coordenadas":[
+					
+					"40.7565217",
+					"-73.9763408"
+					
+				]
+			},
+
+			{
+				"nombre":"Grand Central Terminal",
+				"direccion":"89 E 42nd St, New York, NY 10017, EE. UU.",
+				"imagen": "https://www.nuevayork.com/wp-content/uploads/2013/01/Grand-Central-Terminal-en-Nueva-York-Interior.jpg",
+				"coordenadas":[
+					
+					"40.7527262",
+					"-73.9794181"
+					
+				]
+			},
+
+			{
+				"nombre":"Edificio Chrysler",
+				"direccion":"405 Lexington Ave, New York, NY 10174, EE. UU.",
+				"imagen": "https://i.pinimg.com/originals/f8/20/7d/f8207d91e3e93a343e25c98a174ef5c2.jpg",
+				"coordenadas":[
+					
+					"40.7516208",
+					"-73.9776907"
+					
+				]
+			},
+
+			{
+				"nombre":"Madison Square Garden",
+				"direccion":"4 Pennsylvania Plaza, New York, NY 10001, EE. UU.",
+				"imagen": "https://media-cdn.tripadvisor.com/media/photo-s/07/fe/60/90/le-madison-square-garden.jpg",
+				"coordenadas":[
+					
+					"40.7505045",
+					"-73.9956274"
+					
+				]
+			},
+
+			{
+				"nombre":"Times Square",
+				"direccion":"Manhattan, Nueva York 10036, EE. UU.",
+				"imagen": "https://thumbs.dreamstime.com/b/times-square-new-york-city-los-e-e-u-u-24288839.jpg",
+				"coordenadas":[
+					
+					"40.758895",
+					"-73.9873197"
+					
+				]
+			}
+			
+		
+		],
+		"apto":[
+		  "auto", "colectivo"
+		]
+	}
+  ]
+}
