@@ -1,0 +1,45 @@
+doctype html
+head
+  title= title
+  // Required meta tags
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  // Bootstrap CSS
+  script(type='text/javascript' src='/javascripts/jquery-1.11.0.min.js')
+  script(type='text/javascript' src='/javascripts/funcionesRecos.js')
+  link(rel='shortcut icon' href='icono.png')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+  
+  
+body
+  .container-fluid
+  #nombre_recorrido
+  #tiempo_recorrido
+    strong
+      | Tiempo estimado del recorrido:
+  #categoria_recorrido
+    strong
+      | Categor&iacute;a del recorrido:
+  #tarifa_recorrido
+    strong
+      | Tarifa del recorrido:
+  #descripcion_recorrido
+    strong
+      | Descripci&oacute;n del recorrido:
+  block content
+  .row
+   #textfield.col-md-9
+     strong   Ingrese o edite su comentario 
+     textarea#paginaRecorrido.form-control(onclick='borrarContenido()' rows='3') Ingrese aqui su comentario acerca del recorrido..
+   #muestra_comentario.col-md-3
+     strong  Comentarios anteriores 
+     .form-group
+       textarea#exampleFormControlTextarea1.form-control(rows='3' readonly='')
+   button#but.btn.btn-primary(onclick='oyentePaginaRecorrido()' type='button') Enviar comentario
+  #ultima_fila.row(style='background-color: #FFF8DC;')
+   .col-md-2
+     img.rounded-circle(src='http://www.pcactual.com/medio/2017/06/30/google-maps_51b78e0b.jpg' alt='Cinque Terre' width='150' height='100')
+   #ultima_fila.col-md-10
+     p.text-secondary
+       em
+        | New York es una ciudad especial. Es tal vez una de las mas ricas en cuanto a cantidad, calidad y variedad de puntos tur&iacute;sticos. Es por eso que frente a esta enorme diversidad de opciones, queremos brindarle un abanico de posibilidades de recorridos de acuerdo a sus preferencias y necesidades. Nuestro objetivo es que su viaje sea un recuerdo imborrable. Seleccione sus opciones en cuanto a medios de transporte, tipo de recorrido y tarifas. Listo. Solo se tiene que encargar de disfrutar, nosotros hacemos el resto.

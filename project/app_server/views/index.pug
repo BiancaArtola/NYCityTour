@@ -1,0 +1,141 @@
+extends layout
+
+block content
+ .text-center
+  // <img src="imagen.jpg" >
+ nav#navbar_1.navbar.navbar-expand-lg.navbar-light
+  a.navbar-brand(href='#')
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    form.form-inline
+      button#boton_home.btn(onclick='redireccionar()' type='button') Home
+    form.form-inline.my-2.my-lg-0
+      button#boton_estilo.btn(onclick='changeStyle()' type='button') Cambiar estilo
+  // Titulo de los radioButton
+ .container-fluid
+  // - Primera columna
+  .row
+    #columnaFiltrado.col-md-3
+      // Titulo MEDIO DE TRANSPORTE
+      nav.navbar.navbar-light
+        span#medio_transporte.navbar-text
+          h7  Medio de transporte 
+      form(action='')
+        .container
+          .form-check
+            input#exampleRadios1.form-check-input(type='radio' name='movilidad' value='bicicleta' checked='')
+            label.form-check-label(for='exampleRadios1')
+              | Bicicleta
+          .form-check
+            input#exampleRadios2.form-check-input(type='radio' name='movilidad' value='colectivo')
+            label.form-check-label(for='exampleRadios2')
+              | Colectivo
+          .form-check
+            input#exampleRadios3.form-check-input(type='radio' name='movilidad' value='auto')
+            label.form-check-label(for='exampleRadios3')
+              | Auto
+          .form-check
+            input#exampleRadios4.form-check-input(type='radio' name='movilidad' value='caminando')
+            label.form-check-label(for='exampleRadios4')
+              | Caminando
+        // Cierre contenedor MEDIO DE TRANSPORTE
+      // Titulo DURACION
+      nav.navbar.navbar-light
+        span.navbar-text
+          h7
+            | Duracion maxima
+      form(action='')
+        .container
+          .form-check
+            input#exampleRadios1.form-check-input(type='radio' name='duracion' value='1' checked='')
+            label.form-check-label(for='exampleRadios1')
+              | Una hora
+          .form-check
+            input#exampleRadios2.form-check-input(type='radio' name='duracion' value='3')
+            label.form-check-label(for='exampleRadios2')
+              | Tres horas
+          .form-check
+            input#exampleRadios3.form-check-input(type='radio' name='duracion' value='5')
+            label.form-check-label(for='exampleRadios3')
+              | Cinco horas
+          .form-check
+            input#exampleRadios4.form-check-input(type='radio' name='duracion' value='10')
+            label.form-check-label(for='exampleRadios4')
+              | Diez horas
+        // Cierre contenedor DURACION
+    .col-md-3
+      // Titulo recorridos
+      nav.navbar.navbar-light
+        span.navbar-text
+          h7
+            | Categorias del recorrido
+      form(action='')
+        .container
+          .form-check
+            input#exampleRadios1.form-check-input(type='radio' name='categoria' value='turistico' checked='')
+            label.form-check-label(for='exampleRadios1')
+              | Recorrido turistico
+          .form-check
+            input#exampleRadios2.form-check-input(type='radio' name='categoria' value='historico')
+            label.form-check-label(for='exampleRadios2')
+              | Recorrido historico
+          .form-check
+            input#exampleRadios3.form-check-input(type='radio' name='categoria' value='cultural')
+            label.form-check-label(for='exampleRadios3')
+              | Recorrido cultural
+          .form-check
+            input#exampleRadios4.form-check-input(type='radio' name='categoria' value='ninos')
+            label.form-check-label(for='exampleRadios4')
+              | Recorrido con ni&ntilde;os
+        // Cierre contenedor RECORRIDOS
+      // Titulo tarifas
+      nav.navbar.navbar-light
+        span.navbar-text
+          h7
+            | Tarifa maxima
+      form(action='')
+        .container
+          .form-check
+            input#exampleRadios1.form-check-input(type='radio' name='tarifa' value='5' checked='')
+            label.form-check-label(for='exampleRadios1')
+              | U$ 5
+          .form-check
+            input#exampleRadios2.form-check-input(type='radio' name='tarifa' value='10')
+            label.form-check-label(for='exampleRadios2')
+              | U$ 10
+          .form-check
+            input#exampleRadios3.form-check-input(type='radio' name='tarifa' value='15')
+            label.form-check-label(for='exampleRadios3')
+              | U$ 15
+          .form-check
+            input#exampleRadios4.form-check-input(type='radio' name='tarifa' value='100')
+            label.form-check-label(for='exampleRadios4')
+              | U$ 100
+        // Cierre contenedor TARIFAS
+        .container
+    // - Segunda columna
+    #campo.col-md-6  
+    // Cierre contenedor COLUMNA 2
+  // Cierre contenedor FILA
+  .row
+    .col-md-2
+    .col-md-2
+      button.btn.btn-outline-dark.btn-lg.btn-block(onclick='encontrarChequeado()' type='button') Filtrar recorridos
+    .col-md-2
+  hr
+  .row
+    #mostrador.col-md-6
+    .col-md-6
+  .row
+    #mostrador_izquierda.col-md-3
+    #mostrador_derecha.col-md-2
+    .col-md-7
+  hr
+  #ultima_fila.row(style='border:1px solid #cecece;')
+    .col-md-2
+      img.rounded-circle(src='http://www.pcactual.com/medio/2017/06/30/google-maps_51b78e0b.jpg' alt='Cinque Terre' width='150' height='100')
+    #ultima_fila.col-md-10
+      p.text-secondary
+        em
+          |el comentario de mierda
