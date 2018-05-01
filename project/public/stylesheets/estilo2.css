@@ -4,8 +4,9 @@
 
 h7, .h7 {
   font-size: 1.60rem;
-  color: #A2D9CE;
+  font-family: Copperplate Gothic Light, sans-serif;;
 }
+
 
 h8, .h8{
 	font-size: 1.20rem;
@@ -13,9 +14,20 @@ h8, .h8{
 }
 
 
+
+#contenedor_mapa{
+	height: 300px;
+	width: 1500px;
+}
+
+#campo{
+	height: 100%;
+	width: 100%;
+}
+
 hr, .hr {
 	 width: 100%; 
-	 border-top: 0px;
+	 border-top: 1px;
 }
 
 #navbar_1 {

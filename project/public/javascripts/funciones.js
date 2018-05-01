@@ -21,49 +21,56 @@ function redireccionar()
 
 function encontrarChequeado(){
   //Encontrar chequeado movilidad
-  var movilidad = document.getElementsByName('movilidad');
-  var movilidad_valor;
-  for (var i = 0; i < 4; i++){    
-      if(movilidad[i].checked){
-          movilidad_valor = movilidad[i].value;
-      }
-  }
+  var movilidad = document.getElementById('movilidad');
+  var movilidad_valor = movilidad.value;
 
 
   //Encontrar chequeado tarifa
-  var tarifa = document.getElementsByName('tarifa');
-  var tarifa_valor;
-  for (var i = 0; i < 4; i++){    
-      if(tarifa[i].checked){
-          tarifa_valor = tarifa[i].value;
-      }
-  }
-
+  var tarifa_minima = document.getElementById('tarifa_minima').value;
+  var tarifa_maxima =  document.getElementById('tarifa_maxima').value;
+  
 
   //Encontrar chequeado categoria
-  var categoria = document.getElementsByName('categoria');
-  var categoria_valor;
-  for (var i = 0; i < 4; i++){    
-      if(categoria[i].checked){
-          categoria_valor = categoria[i].value;
-      }
-  }
-
+  var categoria = document.getElementById('categoria');
+  var categoria_valor= categoria.value;
 
   //Encontrar chequeado categoria
-  var duracion = document.getElementsByName('duracion');
-  var duracion_valor;
-  for (var i = 0; i < 4; i++){    
-      if(duracion[i].checked){
-          duracion_valor = duracion[i].value;
-      }
-  }
+  var duracion_minima = document.getElementById('duracion_minima').value;
+  var duracion_maxima = document.getElementById('duracion_maxima').value;
 
-    filtrarRecorridos(movilidad_valor, tarifa_valor, categoria_valor, duracion_valor);
+  if (chequearValores(tarifa_minima, tarifa_maxima) && chequearValores(duracion_minima, duracion_maxima))
+    filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima);
+}
+
+function chequearValores(valor_minimo, valor_maximo){
+  if (valor_minimo != "" && valor_maximo != ""){
+    if (valor_minimo < 0 || valor_minimo > valor_maximo || valor_maximo < 0 ){
+      enviarAlertaError();
+      return false;
+    }
+  }
+  else if (valor_minimo == ""){
+    if (valor_maximo < 0){
+       enviarAlertaError();
+       return false;
+    }
+  }
+  else if (valor_maximo == ""){
+    if (valor_minimo < 0){
+      enviarAlertaError();
+      return false;
+    }
+  }
+  return true;
+}
+
+function enviarAlertaError(){  
+    alert("Los valores ingresados sin invalidos. Por favor ingrese nuevamente. ");
 }
 
 
-function filtrarRecorridos(movilidad_valor, tarifa_valor, categoria_valor, duracion_valor){
+
+ function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima){
   var xmlhttp = new XMLHttpRequest();
   var url="https://astreiten.github.io/CiudadesTuristicas/bootstrap/js/recorridos.json";
   xmlhttp.onreadystatechange = function() {
@@ -80,18 +87,16 @@ function filtrarRecorridos(movilidad_valor, tarifa_valor, categoria_valor, durac
         for (var j=0; j<myArr.recorridos.length;j++)
         {
           cumpleMovilidad=chequearMovilidad(myArr.recorridos[j],movilidad_valor);
-          cumpleTarifa=chequearTarifa(myArr.recorridos[j],tarifa_valor);
+          cumpleTarifa=chequearTarifa(myArr.recorridos[j],tarifa_minima, tarifa_maxima);
           cumpleCategoria=chequearCategoria(myArr.recorridos[j],categoria_valor);
-          cumpleDuracion=chequearDuracion(myArr.recorridos[j],duracion_valor);
+          cumpleDuracion=chequearDuracion(myArr.recorridos[j],duracion_minima, duracion_maxima);
 
+          alert(cumpleMovilidad+" "+cumpleTarifa+" "+cumpleCategoria+" "+cumpleDuracion);
           if(cumpleTarifa && cumpleDuracion && cumpleCategoria && cumpleMovilidad)
           {
             cumplen[cant]=myArr.recorridos[j];
             cant++;
-          }
-          
-
-          
+          }       
         }
 
         mostrarRecorridos(cumplen);
@@ -106,30 +111,49 @@ function filtrarRecorridos(movilidad_valor, tarifa_valor, categoria_valor, durac
 
 }
 
+
+
 function chequearMovilidad(recorrido,movilidad_valor)
 {
-  for (var i=0; i<recorrido.apto.length ; i ++){
-    if (recorrido.apto[i] == movilidad_valor){
-     return true;
+  if (movilidad_valor.localeCompare("Todos los medios") == 0)
+    return true;
+  else{
+    for (var i=0; i<recorrido.apto.length ; i ++){
+      if (recorrido.apto[i] == movilidad_valor.toLowerCase()){
+       return true;
+      }
     }
+    return false;
   }
-  return false;
 }
 
 function chequearCategoria(recorrido,categoria_valor)
 {
-  return categoria_valor == recorrido.categoria;
+  if (categoria_valor.localeCompare("Todos los recorridos") == 0)
+    return true;
+  else
+    return categoria_valor.toLowerCase() == recorrido.categoria;
 }
 
-function chequearDuracion(recorrido,duracion_valor)
+function chequearDuracion(recorrido,duracion_minima, duracion_maxima)
 {
-  return duracion_valor >= recorrido.tiempo;
+  if (duracion_minima == "")
+    duracion_minima = 0;
+  if (duracion_maxima == "")
+    duracion_maxima = 9999999999;
+   return duracion_minima <= recorrido.tiempo && duracion_maxima >= recorrido.tiempo;
 }
 
-function chequearTarifa(recorrido,tarifa_valor)
-{
-  return tarifa_valor >= recorrido.tarifa;
+function chequearTarifa(recorrido, tarifa_minima, tarifa_maxima)
+{ 
+  if (tarifa_minima == ""){
+    tarifa_minima = 0;
+  }
+  if (tarifa_maxima == "")
+    tarifa_maxima = 9999999999;
+  return tarifa_minima <= recorrido.tarifa && tarifa_maxima >= recorrido.tarifa;
 }
+
 
 function mostrarRecorridos(cumplen)
 {
