@@ -1,9 +1,21 @@
 var mapa;
 var markersArray = [];
+var recorridos;
 
 $(function() {
   loadStyle(localStorage.getItem("estilo"));
+  $.get("./api/Recorridos", function (Recorridos) 
+  {
+      alert("hola"+Recorridos);
+      
+      
+   });
+ // alert(recorridos.length);
+
 });
+
+ 
+
 
 
 function initMap() {
@@ -72,7 +84,7 @@ function enviarAlertaError(){
 
  function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima){
   var xmlhttp = new XMLHttpRequest();
-  var url="https://astreiten.github.io/CiudadesTuristicas/bootstrap/js/recorridos.json";
+  var url="http://127.0.0.1:27017/Recorridos/Recorridos/";
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
