@@ -1,0 +1,8 @@
+mixin outputCard(recorrido)
+ .col-md-4
+  .card(style='width: 18rem;')
+    img.card-img-top(src=recorrido.puntos[0].imagen)
+    .card-body
+      h5.card-title=recorrido.nombre
+      p.card-text=recorrido.descripcion
+        

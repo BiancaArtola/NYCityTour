@@ -4,7 +4,7 @@ const Recorridos = mongoose.model('Recorridos');
 
 const getRecorridos = function (req, res) {
   Recorridos
-    .count()
+    .find()
     .exec((err, Recs) => {
       if (err) { 
         res.status(404).json(err);    

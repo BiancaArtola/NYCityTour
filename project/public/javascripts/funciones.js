@@ -3,14 +3,17 @@ var markersArray = [];
 var recorridos;
 
 $(function() {
-  loadStyle(localStorage.getItem("estilo"));
+  //loadStyle(localStorage.getItem("estilo"));
   $.get("./api/Recorridos", function (Recorridos) 
   {
       alert("hola"+Recorridos);
-      
+      recorridos=Recorridos;
+      alert(recorridos.length);
       
    });
- // alert(recorridos.length);
+  
+
+ 
 
 });
 
@@ -83,12 +86,8 @@ function enviarAlertaError(){
 
 
  function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima){
-  var xmlhttp = new XMLHttpRequest();
-  var url="http://127.0.0.1:27017/Recorridos/Recorridos/";
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var myArr = JSON.parse(this.responseText);
-        
+ 
+        var myArr=recorridos;
         var cumpleMovilidad=false;
         var cumpleTarifa=false;
         var cumpleCategoria=false;
@@ -96,30 +95,24 @@ function enviarAlertaError(){
         var cumplen=new Array();
         var cant=0;
         
-        for (var j=0; j<myArr.recorridos.length;j++)
+        for (var j=0; j<myArr.length;j++)
         {
-          cumpleMovilidad=chequearMovilidad(myArr.recorridos[j],movilidad_valor);
-          cumpleTarifa=chequearTarifa(myArr.recorridos[j],tarifa_minima, tarifa_maxima);
-          cumpleCategoria=chequearCategoria(myArr.recorridos[j],categoria_valor);
-          cumpleDuracion=chequearDuracion(myArr.recorridos[j],duracion_minima, duracion_maxima);
+          cumpleMovilidad=chequearMovilidad(myArr[j],movilidad_valor);
+          cumpleTarifa=chequearTarifa(myArr[j],tarifa_minima, tarifa_maxima);
+          cumpleCategoria=chequearCategoria(myArr[j],categoria_valor);
+          cumpleDuracion=chequearDuracion(myArr[j],duracion_minima, duracion_maxima);
 
           alert(cumpleMovilidad+" "+cumpleTarifa+" "+cumpleCategoria+" "+cumpleDuracion);
           if(cumpleTarifa && cumpleDuracion && cumpleCategoria && cumpleMovilidad)
           {
-            cumplen[cant]=myArr.recorridos[j];
+            cumplen[cant]=myArr[j];
             cant++;
           }       
         }
 
         mostrarRecorridos(cumplen);
         
-    }
-    else{
-         document.getElementById("campo").firstChild.data = "Status: " + this.status + "State " + this.readyState;
-    }
-}
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
+  
 
 }
 
