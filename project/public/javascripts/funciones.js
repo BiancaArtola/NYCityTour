@@ -6,19 +6,9 @@ $(function() {
   //loadStyle(localStorage.getItem("estilo"));
   $.get("./api/Recorridos", function (Recorridos) 
   {
-      alert("hola"+Recorridos);
-      recorridos=Recorridos;
-      alert(recorridos.length);
-      
+      recorridos=Recorridos;      
    });
-  
-
- 
-
-});
-
- 
-
+ });
 
 
 function initMap() {
@@ -29,10 +19,6 @@ function initMap() {
    });
 }
 
-function redireccionar()
-{
-  window.location.href="https://astreiten.github.io/CiudadesTuristicas/bootstrap/index.html";
-}
 
 function encontrarChequeado(){
   //Encontrar chequeado movilidad
@@ -58,18 +44,21 @@ function encontrarChequeado(){
 }
 
 function chequearValores(valor_minimo, valor_maximo){
+//Si ninguno de los valores es vacio, chequea que ninguno de ellos sea negativo y que valorMinimo sea menor que valorMaximo
   if (valor_minimo != "" && valor_maximo != ""){
     if (valor_minimo < 0 || valor_minimo > valor_maximo || valor_maximo < 0 ){
       enviarAlertaError();
       return false;
     }
   }
+  //Si el valor minimo es vacio, se controla que el valor maximo no sea negativo
   else if (valor_minimo == ""){
     if (valor_maximo < 0){
        enviarAlertaError();
        return false;
     }
   }
+  //Si el valor maximo es vacio, se controla que el valor minimo no sea negativo
   else if (valor_maximo == ""){
     if (valor_minimo < 0){
       enviarAlertaError();
@@ -83,43 +72,35 @@ function enviarAlertaError(){
     alert("Los valores ingresados sin invalidos. Por favor ingrese nuevamente. ");
 }
 
-
-
- function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima){
- 
-        var myArr=recorridos;
-        var cumpleMovilidad=false;
-        var cumpleTarifa=false;
-        var cumpleCategoria=false;
-        var cumpleDuracion=false;
-        var cumplen=new Array();
-        var cant=0;
+function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima){ 
+    var myArr=recorridos;
+    var cumpleMovilidad=false;
+    var cumpleTarifa=false;
+    var cumpleCategoria=false;
+    var cumpleDuracion=false;
+    var cumplen=new Array();
+    var cant=0;
         
-        for (var j=0; j<myArr.length;j++)
-        {
-          cumpleMovilidad=chequearMovilidad(myArr[j],movilidad_valor);
-          cumpleTarifa=chequearTarifa(myArr[j],tarifa_minima, tarifa_maxima);
-          cumpleCategoria=chequearCategoria(myArr[j],categoria_valor);
-          cumpleDuracion=chequearDuracion(myArr[j],duracion_minima, duracion_maxima);
+    for (var j=0; j<myArr.length;j++){
+        cumpleMovilidad=chequearMovilidad(myArr[j],movilidad_valor);
+        cumpleTarifa=chequearTarifa(myArr[j],tarifa_minima, tarifa_maxima);
+        cumpleCategoria=chequearCategoria(myArr[j],categoria_valor);
+        alert(myArr[j], categoria_valor);
+        cumpleDuracion=chequearDuracion(myArr[j],duracion_minima, duracion_maxima);
 
-          alert(cumpleMovilidad+" "+cumpleTarifa+" "+cumpleCategoria+" "+cumpleDuracion);
-          if(cumpleTarifa && cumpleDuracion && cumpleCategoria && cumpleMovilidad)
-          {
+        if(cumpleTarifa && cumpleDuracion && cumpleCategoria && cumpleMovilidad){
             cumplen[cant]=myArr[j];
             cant++;
-          }       
-        }
+        }       
+    }
 
-        mostrarRecorridos(cumplen);
-        
-  
+    mostrarRecorridos(cumplen); 
 
 }
 
 
-
-function chequearMovilidad(recorrido,movilidad_valor)
-{
+function chequearMovilidad(recorrido,movilidad_valor){
+  //En caso de que el usuario haya seleccionado la opcion "todos los medios" no se filtraran recorridos por movilidad
   if (movilidad_valor.localeCompare("Todos los medios") == 0)
     return true;
   else{
@@ -132,16 +113,15 @@ function chequearMovilidad(recorrido,movilidad_valor)
   }
 }
 
-function chequearCategoria(recorrido,categoria_valor)
-{
+function chequearCategoria(recorrido,categoria_valor){
+  //En caso de que el usuario haya seleccionado la opcion "todos los recorridos" no se filtraran recorridos por categoria
   if (categoria_valor.localeCompare("Todos los recorridos") == 0)
     return true;
   else
     return categoria_valor.toLowerCase() == recorrido.categoria;
 }
 
-function chequearDuracion(recorrido,duracion_minima, duracion_maxima)
-{
+function chequearDuracion(recorrido,duracion_minima, duracion_maxima){
   if (duracion_minima == "")
     duracion_minima = 0;
   if (duracion_maxima == "")
@@ -149,8 +129,7 @@ function chequearDuracion(recorrido,duracion_minima, duracion_maxima)
    return duracion_minima <= recorrido.tiempo && duracion_maxima >= recorrido.tiempo;
 }
 
-function chequearTarifa(recorrido, tarifa_minima, tarifa_maxima)
-{ 
+function chequearTarifa(recorrido, tarifa_minima, tarifa_maxima){ 
   if (tarifa_minima == ""){
     tarifa_minima = 0;
   }
@@ -160,87 +139,49 @@ function chequearTarifa(recorrido, tarifa_minima, tarifa_maxima)
 }
 
 
-function mostrarRecorridos(cumplen)
-{
+function mostrarRecorridos(cumplen){
   if (cumplen.length == 0){
         alert("No se encontraron recorridos con esas caracteristicas. ");
   }
   else{
-
-      document.getElementById("mostrador").innerHTML= " <h7>Recorridos encontrados segun el filtrado: </h7>";
-      for (var i=0;i<cumplen.length;i++)
-      {
-        var str= cumplen[i].nombre;
-        var recorridoEnMapa=cumplen[i];
-        var result;
-        if (str=="Recorrido para bicicletas")
-        {
-          result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/bicicletas.html");
-        }
-        else
-        {
-          if(str=="Recorrido juvenil")
-          {
-            result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/juvenil.html");
-          }
-          else
-          {
-            if(str=="Recorrido Midtown-Manhattan")
-            {
-              result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/mid.html");
-            }
-            else
-            {
-              result=str.link("https://astreiten.github.io/CiudadesTuristicas/bootstrap/museos.html");
-            }
-          }
-        }
-
-        var botonVerMapa= '<button id="botonReco" class="btn btn-outline-primary" type="button">Ver recorrido en mapa</button>';
-
-        document.getElementById("mostrador_izquierda").innerHTML="<li><h8>"+result+"</h8></li> <br>";
-        document.getElementById("mostrador_derecha").innerHTML= botonVerMapa;
-        document.getElementById("botonReco").addEventListener("click", function(){
-        cargarEnMapa(recorridoEnMapa);
-    });
+  	$(".card").hide();
+  	document.getElementById("textoFiltrado").innerHTML ="Recorridos encontrados segun el filtrado";
+	for (var i=0;i<cumplen.length;i++){
+        var recorridoCumple= cumplen[i].nombre;
+        var recorridoEnMapa = cumplen[i];
+        document.getElementById("seccionCards").innerHTML = "<div class='card' style='width: 18rem;'><br><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br><h5 class='card-title'>"+recorridoCumple+"</h5><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-primary' onclick="+cargarEnMapa(recorridoEnMapa)+" >Cargar en mapa</a><br> </div><br></div>";
+    }
   }
 }
-}
+ 	
 
-function cargarEnMapa(reco)
-{
+function cargarEnMapa(reco){
   clearOverlays();
-  for (var i=0;i<reco.puntos.length;i++)
-  {
-  var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
-  var marker=new google.maps.Marker({
-          position: myLatlng,
-          map:mapa,
-          title: reco.puntos[i].nombre
+  for (var i=0;i<reco.puntos.length;i++) {
+	  var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
+	  var marker=new google.maps.Marker({
+	          position: myLatlng,
+	          map:mapa,
+	          title: reco.puntos[i].nombre
         })
-  markersArray[i]=marker;
+  	  markersArray[i]=marker;
   }
 }
 
-/* ESTILOS */
 
-function loadStyle(n)
-{
+function loadStyle(n){
   if (n == null) n = 2;
   var style="/stylesheets/estilo"+n+".css";
   document.getElementById('esti').setAttribute('href',style);
 }
 
-function changeStyle()
-{
+function changeStyle(){
   var txt=document.getElementById("esti").getAttribute('href');
-  if(txt=="/stylesheets/estilo1.css")
-  {
+  if(txt=="/stylesheets/estilo1.css")  {
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
     localStorage.setItem("estilo",2);
   }
-  else
-  {
+  else  {
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
     localStorage.setItem("estilo",1);
   }

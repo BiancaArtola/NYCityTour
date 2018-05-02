@@ -2,7 +2,6 @@ extends layout
 
 block content
  script.
-     alert("holaaaaaaa");
      window.fbAsyncInit = function() {
       FB.init({
        appId      : '863010233882857',
@@ -103,10 +102,10 @@ block content
         .row
           .col-md-2
           .col-md-8
-            h7 Nuestros recorridos m&aacute;s visitados
+             #textoFiltrado.h7 Nuestros recorridos m&aacute;s visitados
           .col-md-2
         hr
-        .row
+        #seccionCards.row
          each recorrido in recorridos 
           +outputCard(recorrido)
          +outputCard(recorridos[3])
