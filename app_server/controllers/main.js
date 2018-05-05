@@ -1,9 +1,9 @@
 const mongoose=require('mongoose');
-const Recorridos=mongoose.model('Recorridos');
+const recorridos=mongoose.model('recorridos');
 
 /* GET home page. */
 const index = function(req, res) {
-  Recorridos
+  recorridos
     .find()
     .exec((err, recorridos) => {
       if (err) { 

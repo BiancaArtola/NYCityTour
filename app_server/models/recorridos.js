@@ -53,4 +53,4 @@ const esquemaRecorridos = new mongoose.Schema({
 
 });
 
-mongoose.model('Recorridos', esquemaRecorridos,'Recorridos');
+mongoose.model('recorridos', esquemaRecorridos,'recorridos');
