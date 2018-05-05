@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb://localhost:27017/Recorridos';
+const dbURI = 'mongodb://localhost:27017/recorridos';
 mongoose.connect(dbURI);
 
-require('./Recorridos');
+require('./recorridos');
