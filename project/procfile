@@ -1,2 +1,2 @@
 web: npm start
-web: node app_server/models/Recorridos
+web: node ./Recorridos
