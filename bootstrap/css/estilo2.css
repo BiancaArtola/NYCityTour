@@ -1,0 +1,36 @@
+#ultima_fila {
+	  background-color: #A2D9CE;
+}
+
+h7, .h7 {
+  font-size: 1.60rem;
+  color: #A2D9CE;
+}
+
+h8, .h8{
+	font-size: 1.20rem;
+	color: #A2D9CE;
+}
+
+
+hr, .hr {
+	 width: 100%; 
+	 border-top: 0px;
+}
+
+#navbar_1 {
+	  background-color: #34495E;
+}
+
+#boton_home{
+	background-color: #A2D9CE;
+}
+
+
+#boton_estilo{
+	background-color: #A2D9CE;
+}
+
+h12, .h12 {
+	color: #000000;
+}
