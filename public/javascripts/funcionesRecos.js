@@ -1,9 +1,12 @@
+var apiFace=require('./facebook');
+
 $(function() {
 
   var al=localStorage.getItem("comentario"+document.title);
   document.getElementById("paginaRecorrido").value=al;
   cargarComentarios();
   obtenerInformacionJSON();
+  alert(apiFace.getStatus());
   
 
 });
