@@ -12,6 +12,19 @@ head
   
   
 body
+  nav#navbar_1.navbar.navbar-expand-lg.navbar-light
+    a.navbar-brand(href='#')
+      img(src='https://png.icons8.com/metro/1600/worldwide-location.png' width='30' height='30' alt='')
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+      form.form-inline.my-2.my-lg-0
+        .col-md-6
+          button.btn.btn-dark(onclick='changeStyle()' type='submit') Cambiar estilo 
+        .col-md-6
+          button.btn.btn-dark(type='submit') Ingresar 
+
   .container-fluid
   #nombre_recorrido
   #tiempo_recorrido
@@ -35,11 +48,5 @@ body
      strong  Comentarios anteriores 
      .form-group
        textarea#exampleFormControlTextarea1.form-control(rows='3' readonly='')
-   button#but.btn.btn-primary(onclick='oyentePaginaRecorrido()' type='button') Enviar comentario
-  #ultima_fila.row(style='background-color: #FFF8DC;')
-   .col-md-2
-     img.rounded-circle(src='http://www.pcactual.com/medio/2017/06/30/google-maps_51b78e0b.jpg' alt='Cinque Terre' width='150' height='100')
-   #ultima_fila.col-md-10
-     p.text-secondary
-       em
-        | New York es una ciudad especial. Es tal vez una de las mas ricas en cuanto a cantidad, calidad y variedad de puntos tur&iacute;sticos. Es por eso que frente a esta enorme diversidad de opciones, queremos brindarle un abanico de posibilidades de recorridos de acuerdo a sus preferencias y necesidades. Nuestro objetivo es que su viaje sea un recuerdo imborrable. Seleccione sus opciones en cuanto a medios de transporte, tipo de recorrido y tarifas. Listo. Solo se tiene que encargar de disfrutar, nosotros hacemos el resto.
+   button#but.btn.btn-secondary(onclick='oyentePaginaRecorrido()' type='button') Enviar comentario
+  
