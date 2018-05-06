@@ -9,6 +9,7 @@ $(function() {
 });
 
 function oyentePaginaRecorrido(){
+	alert(getStatus());
 	if(getStatus()==='connected')
 	{
 		var texto= document.getElementById("paginaRecorrido").value;
