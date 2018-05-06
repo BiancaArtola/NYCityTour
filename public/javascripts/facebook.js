@@ -16,7 +16,7 @@
       });
 
   
-     export function getStatus(){
+      function getStatus(){
       FB.getLoginStatus(function(response) {
          return response;
          });
@@ -38,3 +38,5 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
+
+     export{getStatus};
