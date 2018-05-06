@@ -150,7 +150,8 @@ function mostrarRecorridos(cumplen){
 	  for (var i=0;i<cumplen.length;i++){
         var recorridoCumple= cumplen[i].nombre;
         var recorridoEnMapa = cumplen[i];
-        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br><h5 class='card-title'>"+recorridoCumple+"</h5><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='"+cargarEnMapa(recorridoEnMapa)+"'  >Cargar en mapa</a><br> </div><br></div>";
+        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br><h5 class='card-title'>"+recorridoCumple+"</h5><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa()'>Cargar en mapa</a><br> </div><br></div>";
+        alert(stringCumple[cantCumple]);
         cantCumple++;
     }
     var string = "";
@@ -162,8 +163,19 @@ function mostrarRecorridos(cumplen){
   }
 }
 
-function cargarEnMapa(reco){
+function obtenerRecorrido(nombreRecorrido){
+  var arreglo = recorridos;
+  var recorridoCorrecto= "";
+  for (var i=0; i<arreglo.length;i++){
+    if (arreglo[i].nombre.localeCompare(nombreRecorrido) == 0)
+      return arreglo[i];
+  }
+}
+
+
+function cargarEnMapa(nombre){
   alert("hola");
+  var reco = obtenerRecorrido(nombre);
   clearOverlays();
   for (var i=0;i<reco.puntos.length;i++) {
 	  var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
