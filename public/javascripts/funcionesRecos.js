@@ -30,13 +30,11 @@ function obtenerInformacionJSON(){
 
 function obtenerDatosRecorridos(myArr){
 	var numeroRecorrido=getN(document.title);
-	alert("el numero es"+numeroRecorrido);
 	//Obtengo nombre
 	var nombre = myArr.recorridos[numeroRecorrido].nombre;
     var stringNombre= "<p><h1><strong>"+nombre+"</strong></h1>";
 
 	document.getElementById("nombre_recorrido").innerHTML= stringNombre;
-    alert("entre");
 	//Obtengo tarifa
 	var tarifa = myArr.recorridos[numeroRecorrido].tarifa;
 	document.getElementById("tarifa_recorrido").innerHTML = document.getElementById("tarifa_recorrido").innerHTML +" U$ "+tarifa;
@@ -55,9 +53,7 @@ function obtenerDatosRecorridos(myArr){
 
 	//Obtengo los puntos
 	for (var i =0 ; i < myArr.recorridos[numeroRecorrido].puntos.length; i++)
-		obtenerPuntos(myArr, i);
-
-	
+		obtenerPuntos(myArr, i);	
 }
 
 function obtenerPuntos(myArr, i){
