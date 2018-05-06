@@ -26,7 +26,6 @@ function encontrarChequeado(){
   var movilidad = document.getElementById('movilidad');
   var movilidad_valor = movilidad.value;
 
-
   //Encontrar chequeado tarifa
   var tarifa_minima = document.getElementById('tarifa_minima').value;
   var tarifa_maxima =  document.getElementById('tarifa_maxima').value;
@@ -195,9 +194,10 @@ function cargarEnMapa(nombre){
 }
 
 
-function loadStyle(n){
-  if (n == null) n = 2;
-  var style="/stylesheets/estilo"+n+".css";
+function loadStyle(numeroEstilo){
+  if (numeroEstilo == null) 
+    numeroEstilo = 2;
+  var style="/stylesheets/estilo"+numeroEstilo+".css";
   document.getElementById('esti').setAttribute('href',style);
 }
 
