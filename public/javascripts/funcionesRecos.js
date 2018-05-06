@@ -15,7 +15,7 @@ function oyentePaginaRecorrido(){
 	{
 		$(function() {
   
-        $.get("https://graph.facebook.com/me?fields=id&access_token="access_token"", function (rta) 
+        $.get("https://graph.facebook.com/me?fields=id&access_token="+access_token, function (rta) 
          {
       		alert(rta.name);
           });
