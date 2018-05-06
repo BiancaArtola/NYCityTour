@@ -15,7 +15,7 @@ function oyentePaginaRecorrido(){
 	{
 		$(function() {
   
-        FB.api('/me', {fields: 'last_name'}, function(response) {
+        FB.api('/me', {fields:'name'}, function(response) {
           alert(response);
 		});
 		var texto= document.getElementById("paginaRecorrido").value;
