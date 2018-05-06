@@ -25,7 +25,7 @@ function oyentePaginaRecorrido(){
      )}
 	else
 	{
-		alert("logeate hijo de puta");
+		alert("Para poder ingresar comentarios debe estar logueado.");
 	}
 }
  
