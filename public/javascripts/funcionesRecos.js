@@ -9,7 +9,7 @@ $(function() {
 });
 
 function oyentePaginaRecorrido(){
-	if(getStatus()=='connected')
+	if(getStatus()==='connected')
 	{
 		var texto= document.getElementById("paginaRecorrido").value;
 	    localStorage.setItem("comentario"+document.title,texto);
