@@ -5,4 +5,6 @@ mixin outputCard(recorrido)
     .card-body
       h5.card-title=recorrido.nombre
       p.card-text=recorrido.descripcion
+      a.btn.btn-secondary(href='#' onclick='cargarEnMapa(recorrido)') Cargar en mapa
+
         

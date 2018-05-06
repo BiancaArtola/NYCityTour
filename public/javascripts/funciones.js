@@ -85,7 +85,6 @@ function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, catego
         cumpleMovilidad=chequearMovilidad(myArr[j],movilidad_valor);
         cumpleTarifa=chequearTarifa(myArr[j],tarifa_minima, tarifa_maxima);
         cumpleCategoria=chequearCategoria(myArr[j],categoria_valor);
-        alert(myArr[j], categoria_valor);
         cumpleDuracion=chequearDuracion(myArr[j],duracion_minima, duracion_maxima);
 
         if(cumpleTarifa && cumpleDuracion && cumpleCategoria && cumpleMovilidad){
@@ -146,16 +145,25 @@ function mostrarRecorridos(cumplen){
   else{
   	$(".card").hide();
   	document.getElementById("textoFiltrado").innerHTML ="Recorridos encontrados segun el filtrado";
-	for (var i=0;i<cumplen.length;i++){
+    var stringCumple =[];
+    var cantCumple=0;
+	  for (var i=0;i<cumplen.length;i++){
         var recorridoCumple= cumplen[i].nombre;
         var recorridoEnMapa = cumplen[i];
-        document.getElementById("seccionCards").innerHTML = "<div class='card' style='width: 18rem;'><br><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br><h5 class='card-title'>"+recorridoCumple+"</h5><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-primary' onclick="+cargarEnMapa(recorridoEnMapa)+" >Cargar en mapa</a><br> </div><br></div>";
+        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br><h5 class='card-title'>"+recorridoCumple+"</h5><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='"+cargarEnMapa(recorridoEnMapa)+"'  >Cargar en mapa</a><br> </div><br></div>";
+        cantCumple++;
     }
+    var string = "";
+    for (var x=0; x<cantCumple;x++){
+      string = string.concat(stringCumple[x]);
+    }
+
+     document.getElementById("seccionCards").innerHTML = string;
   }
 }
- 	
 
 function cargarEnMapa(reco){
+  alert("hola");
   clearOverlays();
   for (var i=0;i<reco.puntos.length;i++) {
 	  var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
@@ -166,6 +174,9 @@ function cargarEnMapa(reco){
         })
   	  markersArray[i]=marker;
   }
+  var tiempo = tiempo || 1000;
+  var id="#campo";
+  $("html, body").animate({ scrollTop: $(id).offset().top }, tiempo);
 }
 
 
