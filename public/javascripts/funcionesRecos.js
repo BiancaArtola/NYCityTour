@@ -3,7 +3,10 @@ $(function() {
   var al=localStorage.getItem("comentario"+document.title);
   document.getElementById("paginaRecorrido").value=al;
   cargarComentarios();
-    obtenerInformacionJSON();
+  obtenerInformacionJSON();
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
 
 });
 
@@ -11,6 +14,10 @@ function oyentePaginaRecorrido(){
 	var texto= document.getElementById("paginaRecorrido").value;
 	localStorage.setItem("comentario"+document.title,texto);
 	cargarComentarios();
+}
+ 
+function statusChangeCallback(response){
+	alert(response.status);
 }
 
 function obtenerInformacionJSON(){
