@@ -4,7 +4,7 @@ var recorridos;
 
 $(function() {
   //loadStyle(localStorage.getItem("estilo"));
-  $.get("./api/Recorridos", function (Recorridos) 
+  $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
    });

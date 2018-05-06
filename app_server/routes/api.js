@@ -3,5 +3,5 @@ var router = express.Router();
 const recorridosApi = require('../controllers/recorridosApi');
 
 /* GET home page. */
-router.get('/Recorridos', recorridosApi.getRecorridos);
+router.get('/recorridos', recorridosApi.getRecorridos);
 module.exports = router;
