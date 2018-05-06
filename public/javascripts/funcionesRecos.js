@@ -5,18 +5,20 @@ $(function() {
   document.getElementById("paginaRecorrido").value=al;
   cargarComentarios();
   obtenerInformacionJSON();
-  $.getScript("facebook.js", function() {
-   alert("Script loaded but not necessarily executed.");
-});
   
-  
-
 });
 
 function oyentePaginaRecorrido(){
-	var texto= document.getElementById("paginaRecorrido").value;
-	localStorage.setItem("comentario"+document.title,texto);
-	cargarComentarios();
+	if(getStatus().localeCompare("connected"))
+	{
+		var texto= document.getElementById("paginaRecorrido").value;
+	    localStorage.setItem("comentario"+document.title,texto);
+	    cargarComentarios();
+	}
+	else
+	{
+		alert("logeate hijo de puta");
+	}
 }
  
 function statusChangeCallback(response){
@@ -139,7 +141,7 @@ $(function() {
   
       function getStatus(){
       FB.getLoginStatus(function(response) {
-         return response;
+         return response.status;
          });
      }
 
