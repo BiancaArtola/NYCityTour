@@ -23,6 +23,7 @@ function oyentePaginaRecorrido(){
 	    localStorage.setItem("comentario"+document.title,texto);
 	    cargarComentarios();
 	}
+     )}
 	else
 	{
 		alert("logeate hijo de puta");
