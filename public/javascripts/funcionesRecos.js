@@ -4,9 +4,7 @@ $(function() {
   document.getElementById("paginaRecorrido").value=al;
   cargarComentarios();
   obtenerInformacionJSON();
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
+  
 
 });
 
