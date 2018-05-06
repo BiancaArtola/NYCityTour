@@ -1,20 +1,21 @@
-      
-
-     $(
-      window.fbAsyncInit = function() {
-      FB.init({
-       appId      : '863010233882857',
-       cookie     : true,
-       xfbml      : true,
-       version    : 'v3.0'
+      $(function() {
+ 
+       window.fbAsyncInit = function() {
+        FB.init({
+        appId      : '863010233882857',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.0'
        });
-      FB.AppEvents.logPageView();
-      FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-      alert(response.status);
-     });
-     });
+       FB.AppEvents.logPageView();
+       FB.getLoginStatus(function(response) {
+         statusChangeCallback(response);
+         alert(response.status);
+         });
+      }
+      });
 
+  
      
 
      function statusChangeCallback(response){
