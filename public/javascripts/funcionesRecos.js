@@ -4,8 +4,7 @@ var access_token;
 $(function() {
 
   var al=localStorage.getItem("comentario"+document.title);
-  document.getElementById("paginaRecorrido").value=al;
-  cargarComentarios();
+  //cargarComentarios();
   obtenerInformacionJSON();
   
 });
