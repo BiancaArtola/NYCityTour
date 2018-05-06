@@ -1,5 +1,5 @@
 var apif;
-import {getStatus} from 'facebook';
+import {getStatus} from "facebook";
 $(function() {
 
   var al=localStorage.getItem("comentario"+document.title);

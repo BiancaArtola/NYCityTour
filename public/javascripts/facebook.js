@@ -16,7 +16,7 @@
       });
 
   
-     function getStatus(){
+     export function getStatus(){
       FB.getLoginStatus(function(response) {
          return response;
          });
