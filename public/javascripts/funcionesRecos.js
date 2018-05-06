@@ -1,4 +1,5 @@
 var status;
+var access_token;
 
 $(function() {
 
@@ -12,6 +13,12 @@ $(function() {
 function oyentePaginaRecorrido(){
 	if(status==='connected')
 	{
+		$(function() {
+  
+        $.get("https://graph.facebook.com/me?fields=id&access_token="access_token"", function (rta) 
+         {
+      		alert(rta.name);
+          });
 		var texto= document.getElementById("paginaRecorrido").value;
 	    localStorage.setItem("comentario"+document.title,texto);
 	    cargarComentarios();
@@ -136,6 +143,7 @@ $(function() {
          statusChangeCallback(response);
          alert("HIJODEPUTA"+response.status);
          status=response.status;
+         access_token=response.access_token;
          });
       }
       });
