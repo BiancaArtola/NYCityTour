@@ -1,14 +1,12 @@
 var apif;
+import {getStatus} from 'facebook';
 $(function() {
 
   var al=localStorage.getItem("comentario"+document.title);
   document.getElementById("paginaRecorrido").value=al;
   cargarComentarios();
   obtenerInformacionJSON();
-  $.getScript('./facebook.js', function (script) {          
-      apif=script; 
-      alert(apif.getStatus());
-   }); 
+  alert(getStatus());
   
   
 
