@@ -21,6 +21,7 @@ function initMap() {
 
 
 function encontrarChequeado(){
+  clearOverlays();
   //Encontrar chequeado movilidad
   var movilidad = document.getElementById('movilidad');
   var movilidad_valor = movilidad.value;
@@ -152,7 +153,7 @@ function mostrarRecorridos(cumplen){
         var recorridoEnMapa = cumplen[i];
         var stringHtml = "https://ciudadesturisticas.herokuapp.com/"+cumplen[i].nombre_url;
 
-        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoCumple+"</h5></a><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa()'>Cargar en mapa</a><br> </div><br></div>";
+        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoCumple+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoCumple+"\");'>Cargar en mapa</a><br> </div><br></div>";
 
         cantCumple++;
     }
@@ -176,7 +177,7 @@ function obtenerRecorrido(nombreRecorrido){
 
 
 function cargarEnMapa(nombre){
-  alert("hola");
+  alert(nombre);
   var reco = obtenerRecorrido(nombre);
   clearOverlays();
   for (var i=0;i<reco.puntos.length;i++) {
