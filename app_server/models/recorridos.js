@@ -26,6 +26,10 @@ const esquemaRecorridos = new mongoose.Schema({
     type: String,
     required: true
   },
+  nombre_url: {
+    type: String,
+    required: true
+  },
   tiempo: {
     type: Number,
     required: true

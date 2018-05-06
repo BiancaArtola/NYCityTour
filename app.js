@@ -28,10 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/5aeefa56f36d2837eae68802', bicisRouter);
-app.use('/5aeefa23f36d2837eae687ff', juvenilRouter);
-app.use('/5aeefa6ef36d2837eae6880d', midtownRouter);
-app.use('/5aeef9fef36d2837eae687fb', museosRouter);
+app.use('/bicicletas', bicisRouter);
+app.use('/juvenil', juvenilRouter);
+app.use('/midtown', midtownRouter);
+app.use('/museosny', museosRouter);
 app.use('/api',apiRouter);
 
 

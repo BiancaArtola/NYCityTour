@@ -150,9 +150,9 @@ function mostrarRecorridos(cumplen){
 	  for (var i=0;i<cumplen.length;i++){
         var recorridoCumple= cumplen[i].nombre;
         var recorridoEnMapa = cumplen[i];
-        var stringHtml = "https://ciudadesturisticas.herokuapp.com/"+cumplen[i].$oid;
-        alert(cumplen[i].$oid);
-      
+        var stringHtml = "https://ciudadesturisticas.herokuapp.com/"+cumplen[i].nombre_url;
+        alert(cumplen[i].nombre_url);
+
         stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <a href="+stringHtml+"><h5 class='card-title'>"+recorridoCumple+"</h5></a><br><p class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa()'>Cargar en mapa</a><br> </div><br></div>";
         alert(stringCumple[cantCumple]);
         cantCumple++;
