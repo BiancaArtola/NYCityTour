@@ -16,10 +16,13 @@
       });
 
   
-     
+     function getStatus(){
+      FB.getLoginStatus(function(response) {
+         return response;
+         });
+     }
 
      function statusChangeCallback(response){
-     alert(response.status);
      if (response.status === 'connected') {
      var uid = response.authResponse.userID;
      var accessToken = response.authResponse.accessToken;
