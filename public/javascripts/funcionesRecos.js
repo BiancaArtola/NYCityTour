@@ -1,3 +1,4 @@
+var status;
 
 $(function() {
 
@@ -10,7 +11,7 @@ $(function() {
 
 function oyentePaginaRecorrido(){
 	alert(getStatus());
-	if(getStatus()==='connected')
+	if(status==='connected')
 	{
 		var texto= document.getElementById("paginaRecorrido").value;
 	    localStorage.setItem("comentario"+document.title,texto);
@@ -135,16 +136,11 @@ $(function() {
        FB.getLoginStatus(function(response) {
          statusChangeCallback(response);
          alert("HIJODEPUTA"+response.status);
+         status=response.status;
          });
       }
       });
 
-  
-      function getStatus(){
-      FB.getLoginStatus(function(response) {
-         return response.status;
-         });
-     }
 
      function statusChangeCallback(response){
      if (response.status === 'connected') {
