@@ -15,10 +15,9 @@ function oyentePaginaRecorrido(){
 	{
 		$(function() {
   
-        $.get("https://graph.facebook.com/me?fields=id&access_token="+access_token, function (rta) 
-         {
-      		alert(rta.name);
-          });
+        FB.api('/me', {fields: 'last_name'}, function(response) {
+          alert(response);
+		});
 		var texto= document.getElementById("paginaRecorrido").value;
 	    localStorage.setItem("comentario"+document.title,texto);
 	    cargarComentarios();
