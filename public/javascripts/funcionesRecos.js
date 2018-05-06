@@ -144,6 +144,13 @@ $(function() {
          status=response.status;
          access_token=response.access_token;
          });
+
+        FB.Event.subscribe('comment.create',
+        function(response) {
+            alert('A new comment has been added!');
+        }
+    );
+
       }
       });
 
