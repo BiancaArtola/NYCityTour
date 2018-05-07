@@ -122,7 +122,7 @@ $(function() {
       FB.getLoginStatus(function(response) {
          statusChangeCallback(response);
          status=response.status;
-         access_token=response.access_token;
+         access_token=response.authResponse.userID;
          alert("AT "+access_token);
        });
 	   FB.Event.subscribe('comment.create',
