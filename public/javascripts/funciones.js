@@ -1,7 +1,7 @@
 var mapa;
 var markersArray = [];
 var recorridos;
-var user_id;
+var user_id="10209281704397898";
 
 $(function() {
   alert("NUEVA EJECUCION");
@@ -9,6 +9,11 @@ $(function() {
   {
       recorridos=Recorridos;      
    });
+
+  $.post("./api/estilos?"+$.param({ user: user_id,newstyle: 5 }), function (response) 
+         {
+            alert("HICE EL POST");
+         });
 
   $.get("./api/estilos",{"user":user_id}, function (estilos) 
   {

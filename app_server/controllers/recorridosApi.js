@@ -35,7 +35,7 @@ const setEstilo=function(req,res){
       if (err) { 
         res.status(404).json(err);     
       } else {
-        console.log("resultado "+Recs);
+        console.log("resultado "+Recs[0]);
         res.status(200).json(Recs);
       }
     })
