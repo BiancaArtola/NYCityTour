@@ -30,14 +30,14 @@ const getEstilos= function(req,res){
 const setEstilo=function(req,res){
   console.log("Los parametros son"+req.query.user+" "+req.query.newstyle);
   estilos
-   .update({"user":req.query.user},{"style":req.query.newstyle},{upsert:true})
+   .update({"user":req.query.user},{"user":req.query.user,"style":req.query.newstyle},{upsert:true})
     .exec((err, Recs) => {
       if (err) { 
-        res.status(404)   
+        res.status(404).json(err);     
       } else {
-        res.status(200)
+        res.status(200).json(Recs);
       }
     })
 }
 
-module.exports = { getRecorridos, getEstilos };
+module.exports = { getRecorridos, getEstilos, setEstilo };

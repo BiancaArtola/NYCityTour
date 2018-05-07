@@ -1,7 +1,7 @@
 var mapa;
 var markersArray = [];
 var recorridos;
-var user_id="10209281704397898";
+var user_id;
 
 $(function() {
   //loadStyle(localStorage.getItem("estilo"));
@@ -10,10 +10,11 @@ $(function() {
       recorridos=Recorridos;      
    });
 
-  $.get("./api/estilos",{"user":"10209281704397898"}, function (estilos) 
+  $.get("./api/estilos",{"user":user_id}, function (estilos) 
   {
          if(estilos[0]!=undefined)
          {
+            alert("estilo 0 es "+estilos[0].style);
             var estilo=estilos[0].style;
             loadStyle(estilo);
             alert("entre al if y cambie");
@@ -233,7 +234,7 @@ function changeStyle(){
     if(user_id!=undefined)
     {
       alert("entre al if de uid");
-      $.post("./api/estilos",{user:"10209281704397898",newstyle:2}, function (estilos) 
+      $.post("./api/estilos?"+$.param({ user: user_id,newstyle:2 }), function (estilos) 
          {
             alert("cambie exitosamente");
          });
@@ -249,7 +250,7 @@ function changeStyle(){
     if(user_id!=undefined)
     {
       alert("entre al if de uid");
-      $.post("./api/estilos",{"user":"10209281704397898","newstyle":2}, function (estilos) 
+      $.post("./api/estilos?"+$.param({ user: user_id,newstyle: 1 }), function (estilos) 
          {
             alert("cambie exitosamente");
          });
