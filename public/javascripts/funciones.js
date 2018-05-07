@@ -1,7 +1,7 @@
 var mapa;
 var markersArray = [];
 var recorridos;
-var user_id;
+var user_id="10209281704397898";
 
 $(function() {
   //loadStyle(localStorage.getItem("estilo"));
@@ -10,9 +10,19 @@ $(function() {
       recorridos=Recorridos;      
    });
 
-  $.get("",{"user":user_id}, function (style) 
+  $.get("./api/estilos",{"user":"10209281704397898"}, function (estilos) 
   {
-         alert(style);   
+         if(estilos[0]!=undefined)
+         {
+            var estilo=estilos[0].style;
+            loadStyle(estilo);
+            alert("entre al if y cambie");
+         } 
+         else
+         {
+            alert("entre al else");
+            loadStyle(localStorage.getItem("estilo"));
+         } 
    });
  });
 
@@ -215,14 +225,39 @@ function loadStyle(numeroEstilo){
 }
 
 function changeStyle(){
+  alert("entre al oyente "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
-  if(txt=="/stylesheets/estilo1.css")  {
+  if(txt=="/stylesheets/estilo1.css")  
+  {
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
-    localStorage.setItem("estilo",2);
+    if(user_id!=undefined)
+    {
+      alert("entre al if de uid");
+      $.post("./api/estilos",{user:"10209281704397898",newstyle:2}, function (estilos) 
+         {
+            alert("cambie exitosamente");
+         });
+    }
+    else
+    {
+      localStorage.setItem("estilo",2);
+    }   
   }
-  else  {
+  else
+  {
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
-    localStorage.setItem("estilo",1);
+    if(user_id!=undefined)
+    {
+      alert("entre al if de uid");
+      $.post("./api/estilos",{"user":"10209281704397898","newstyle":2}, function (estilos) 
+         {
+            alert("cambie exitosamente");
+         });
+    }
+    else
+    {
+       localStorage.setItem("estilo",1);
+    } 
   }
   
 }
