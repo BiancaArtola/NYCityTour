@@ -121,7 +121,7 @@ $(function() {
       FB.AppEvents.logPageView();
       FB.getLoginStatus(function(response) {
          statusChangeCallback(response);
-         alert("HIJODEPUTA"+response.status);
+         alert("UID"+response.userID);
          status=response.status;
          access_token=response.access_token;
        });
