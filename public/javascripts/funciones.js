@@ -21,23 +21,21 @@ function initMap() {
 
 
 function encontrarChequeado(){
-  clearOverlays();
-  //Encontrar chequeado movilidad
+  clearOverlays(); //Remueve los marcadores que se encontraban en el mapa de un recorrido seleccionado. 
+
+  //Obtiene seleccionados por el filtrado.
   var movilidad = document.getElementById('movilidad');
   var movilidad_valor = movilidad.value;
 
-  //Encontrar chequeado tarifa
   var tarifa_minima = document.getElementById('tarifa_minima').value;
   var tarifa_maxima =  document.getElementById('tarifa_maxima').value;
   
-
-  //Encontrar chequeado categoria
   var categoria = document.getElementById('categoria');
   var categoria_valor= categoria.value;
 
-  //Encontrar chequeado categoria
   var duracion_minima = document.getElementById('duracion_minima').value;
   var duracion_maxima = document.getElementById('duracion_maxima').value;
+
 
   if (chequearValores(tarifa_minima, tarifa_maxima) && chequearValores(duracion_minima, duracion_maxima))
     filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, categoria_valor, duracion_minima, duracion_maxima);
@@ -82,6 +80,7 @@ function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, catego
     var cant=0;
         
     for (var j=0; j<myArr.length;j++){
+      //Obtiene los recorridos que cumplen con cada condicion de filtrado.
         cumpleMovilidad=chequearMovilidad(myArr[j],movilidad_valor);
         cumpleTarifa=chequearTarifa(myArr[j],tarifa_minima, tarifa_maxima);
         cumpleCategoria=chequearCategoria(myArr[j],categoria_valor);
@@ -92,7 +91,6 @@ function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, catego
             cant++;
         }       
     }
-
     mostrarRecorridos(cumplen); 
 
 }
@@ -143,55 +141,64 @@ function mostrarRecorridos(cumplen){
         alert("No se encontraron recorridos con esas caracteristicas. ");
   }
   else{
-  	$(".card").hide();
+  	$(".card").hide();  //Se quitan de la pantalla aquellos recorridos que eran mostrados anteriormente.
   	document.getElementById("textoFiltrado").innerHTML ="Recorridos encontrados segun el filtrado";
     var stringCumple =[];
     var cantCumple=0;
 	  for (var i=0;i<cumplen.length;i++){
-        var recorridoCumple= cumplen[i].nombre;
         var recorridoEnMapa = cumplen[i];
         var stringHtml = "https://ciudadesturisticas.herokuapp.com/"+cumplen[i].nombre_url;
 
-        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoCumple+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoCumple+"\");'>Cargar en mapa</a><br> </div><br></div>";
+        //Crea un card con los datos correspondientes al recorrido que debe ser mostrado.
+        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoEnMapa.nombre+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoEnMapa.nombre+"\");'>Cargar en mapa</a><br> </div><br></div>";
 
         cantCumple++;
     }
     var string = "";
     for (var x=0; x<cantCumple;x++){
+      //Crea el string con todos los cards que deben ser mostrados segun el filtrado.
       string = string.concat(stringCumple[x]);
     }
-
      document.getElementById("seccionCards").innerHTML = string;
   }
 }
 
+function cargarEnMapa(nombre){
+  var reco = obtenerRecorrido(nombre);
+  clearOverlays();
+  
+  for (var i=0;i<reco.puntos.length;i++) {
+    var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
+    var marker=new google.maps.Marker({
+            position: myLatlng,
+            map:mapa,
+            title: reco.puntos[i].nombre
+        })
+      markersArray[i]=marker;
+  }
+
+  //Redirige la pagina hacia el mapa
+  var tiempo = tiempo || 1000;
+  var id="#campo";
+  $("html, body").animate({ scrollTop: $(id).offset().top }, tiempo);
+}
+
 function obtenerRecorrido(nombreRecorrido){
+  //Retorna el recorrido correspondiente al nombre: nombreRecorrido
   var arreglo = recorridos;
-  var recorridoCorrecto= "";
   for (var i=0; i<arreglo.length;i++){
     if (arreglo[i].nombre.localeCompare(nombreRecorrido) == 0)
       return arreglo[i];
   }
 }
 
-
-function cargarEnMapa(nombre){
-  alert(nombre);
-  var reco = obtenerRecorrido(nombre);
-  clearOverlays();
-  for (var i=0;i<reco.puntos.length;i++) {
-	  var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
-	  var marker=new google.maps.Marker({
-	          position: myLatlng,
-	          map:mapa,
-	          title: reco.puntos[i].nombre
-        })
-  	  markersArray[i]=marker;
+function clearOverlays() {
+  for (var i = 0; i < markersArray.length; i++ ) {
+    markersArray[i].setMap(null);
   }
-  var tiempo = tiempo || 1000;
-  var id="#campo";
-  $("html, body").animate({ scrollTop: $(id).offset().top }, tiempo);
+  markersArray.length = 0;
 }
+
 
 
 function loadStyle(numeroEstilo){
@@ -212,12 +219,5 @@ function changeStyle(){
     localStorage.setItem("estilo",1);
   }
   
-}
-
-function clearOverlays() {
-  for (var i = 0; i < markersArray.length; i++ ) {
-    markersArray[i].setMap(null);
-  }
-  markersArray.length = 0;
 }
 
