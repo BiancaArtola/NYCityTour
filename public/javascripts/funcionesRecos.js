@@ -1,5 +1,5 @@
 var status;
-var access_token;
+var user_id;
 
 $(function() {
   var al=localStorage.getItem("comentario"+document.title);
@@ -122,8 +122,8 @@ $(function() {
       FB.getLoginStatus(function(response) {
          statusChangeCallback(response);
          status=response.status;
-         access_token=response.authResponse.userID;
-         alert("AT "+access_token);
+         user_id=response.authResponse.userID;
+         alert("user_id "+access_token);
        });
 	   FB.Event.subscribe('comment.create',
        function(response) {

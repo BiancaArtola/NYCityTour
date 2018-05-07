@@ -1,12 +1,18 @@
 var mapa;
 var markersArray = [];
 var recorridos;
+var user_id;
 
 $(function() {
   //loadStyle(localStorage.getItem("estilo"));
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
+   });
+
+  $.get("",{"user":user_id}, function (style) 
+  {
+         alert(style);   
    });
  });
 
@@ -220,4 +226,51 @@ function changeStyle(){
   }
   
 }
+
+$(function() { 
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '863010233882857',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.0'
+      });
+      FB.AppEvents.logPageView();
+      FB.getLoginStatus(function(response) {
+         statusChangeCallback(response);
+         status=response.status;
+         user_id=response.authResponse.userID;
+         alert("user_id "+access_token);
+       });
+     FB.Event.subscribe('comment.create',
+       function(response) {
+          alert('A new comment has been added!');
+       });
+
+    }
+});
+
+function statusChangeCallback(response){
+     if (response.status === 'connected') {
+       var uid = response.authResponse.userID;
+       var accessToken = response.authResponse.accessToken;
+     } else if (response.status === 'not_authorized') {
+
+     } else { 
+      alert("no logeado");
+       console.log("hola");    
+     }
+}
+
+(function(d, s, id){
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {
+    return;
+  }
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
 

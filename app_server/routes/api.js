@@ -4,4 +4,5 @@ const recorridosApi = require('../controllers/recorridosApi');
 
 /* GET home page. */
 router.get('/recorridos', recorridosApi.getRecorridos);
+router.get('/estilos',  recorridosApi.getEstilos);
 module.exports = router;
