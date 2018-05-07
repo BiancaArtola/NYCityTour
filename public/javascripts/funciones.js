@@ -1,4 +1,4 @@
-var mapa;
+var map;
 var markersArray = [];
 var recorridos;
 var user_id;
@@ -9,28 +9,28 @@ $(function() {
   {
       recorridos=Recorridos;      
    });
+ });
 
-  $.get("./api/estilos",{"user":user_id}, function (estilos) 
+
+  $.get("./api/estilos",{"user":"102019281704397898"}, function (estilos) 
   {
          if(estilos[0]!=undefined)
          {
-            alert("estilo 0 es "+estilos[0].style);
             var estilo=estilos[0].style;
             loadStyle(estilo);
             alert("entre al if y cambie");
          } 
          else
          {
-            alert("entre al else");
             loadStyle(localStorage.getItem("estilo"));
          } 
-   });
+  
  });
 
 
 function initMap() {
   // Create a map object and specify the DOM element for display.
-  mapa = new google.maps.Map(document.getElementById("campo"), { 
+  map = new google.maps.Map(document.getElementById("campo"), { 
     center: {lat: 40.7825, lng: -73.966111},
     zoom: 12
    });
@@ -183,21 +183,42 @@ function mostrarRecorridos(cumplen){
 function cargarEnMapa(nombre){
   var reco = obtenerRecorrido(nombre);
   clearOverlays();
+
+
+  var contentString = 'hola';
   
   for (var i=0;i<reco.puntos.length;i++) {
     var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
     var marker=new google.maps.Marker({
-            position: myLatlng,
-            map:mapa,
-            title: reco.puntos[i].nombre
-        })
-      markersArray[i]=marker;
+      position: myLatlng,
+      map:map,
+      title: reco.puntos[i].nombre
+    });
+    marker.info = new google.maps.InfoWindow({
+        content: '<b>Speed:</b> ' + i + ' knots'
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      this.info.open(map, this);
+    });
+
+
+   /* var infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      zIndex : i
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });*/
+    markersArray[i]=marker;
   }
+
 
   //Redirige la pagina hacia el mapa
   var tiempo = tiempo || 1000;
   var id="#campo";
   $("html, body").animate({ scrollTop: $(id).offset().top }, tiempo);
+
 }
 
 function obtenerRecorrido(nombreRecorrido){
@@ -226,41 +247,23 @@ function loadStyle(numeroEstilo){
 }
 
 function changeStyle(){
-  alert("entre al oyente "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
-  if(txt=="/stylesheets/estilo1.css")  
-  {
+  if(txt=="/stylesheets/estilo1.css") {
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
-    if(user_id!=undefined)
-    {
-      alert("entre al if de uid");
-      $.post("./api/estilos?"+$.param({ user: user_id,newstyle:2 }), function (estilos) 
-         {
-            alert("cambie exitosamente");
-         });
+    if(user_id!=undefined){
+      $.post("./api/estilos",{user:"10209281704397898",newstyle:2});
     }
     else
-    {
-      localStorage.setItem("estilo",2);
-    }   
+      localStorage.setItem("estilo",2);     
   }
-  else
-  {
+  else{
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
-    if(user_id!=undefined)
-    {
-      alert("entre al if de uid");
-      $.post("./api/estilos?"+$.param({ user: user_id,newstyle: 1 }), function (estilos) 
-         {
-            alert("cambie exitosamente");
-         });
+    if(user_id!=undefined) {
+      $.post("./api/estilos",{"user":"10209281704397898","newstyle":2});
     }
-    else
-    {
-       localStorage.setItem("estilo",1);
-    } 
-  }
-  
+    else    
+       localStorage.setItem("estilo",1);    
+  }  
 }
 
 $(function() { 
