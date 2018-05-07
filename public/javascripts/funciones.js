@@ -4,7 +4,7 @@ var recorridos;
 var user_id;
 
 $(function() {
-  //loadStyle(localStorage.getItem("estilo"));
+  alert("NUEVA EJECUCION");
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
@@ -234,14 +234,15 @@ function changeStyle(){
     if(user_id!=undefined)
     {
       alert("entre al if de uid");
-      $.post("./api/estilos?"+$.param({ user: user_id,newstyle:2 }), function (estilos) 
+      $.post("./api/estilos?"+$.param({ user: user_id,newstyle:2 }), function (response) 
          {
-            alert("cambie exitosamente");
+            alert(response.length);
          });
     }
     else
     {
       localStorage.setItem("estilo",2);
+      alert("guarde en local");
     }   
   }
   else
@@ -250,19 +251,21 @@ function changeStyle(){
     if(user_id!=undefined)
     {
       alert("entre al if de uid");
-      $.post("./api/estilos?"+$.param({ user: user_id,newstyle: 1 }), function (estilos) 
+      $.post("./api/estilos?"+$.param({ user: user_id,newstyle: 1 }), function (response) 
          {
-            alert("cambie exitosamente");
+            alert(response.length);
          });
     }
     else
     {
        localStorage.setItem("estilo",1);
+       alert("guarde en local");
     } 
   }
   
 }
 
+/*
 $(function() { 
     window.fbAsyncInit = function() {
       FB.init({
@@ -308,5 +311,5 @@ function statusChangeCallback(response){
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
+*/
 
