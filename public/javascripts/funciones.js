@@ -183,10 +183,8 @@ function mostrarRecorridos(cumplen){
 
 function cargarEnMapa(nombre){
   var reco = obtenerRecorrido(nombre);
-  clearOverlays();
+  clearOverlays(); 
 
-
-  var contentString = 'hola';
   
   for (var i=0;i<reco.puntos.length;i++) {
     var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
@@ -195,8 +193,14 @@ function cargarEnMapa(nombre){
       map:map,
       title: reco.puntos[i].nombre
     });
+
+     var contentString = "<b>"+ reco.puntos[i].nombre + "</b>" + '<br>' +  reco.puntos[i].direccion
+  + '<br>' + "<img width='200' src=" +  reco.puntos[i].imagen + ">" ;
+
+
     marker.info = new google.maps.InfoWindow({
-        content: '<b>Speed:</b> ' + i + ' knots'
+        content: contentString,
+        maxWidth: 500
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -204,33 +208,18 @@ function cargarEnMapa(nombre){
     });
 
     markersArray[i]=marker;
-    //Redirige la pagina hacia el mapa
-    var tiempo = tiempo || 1000;
-    var id="#campo";
-    $("html, body").animate({ scrollTop: $(id).offset().top }, tiempo);
   }
-}
-/*
-function cargarEnMapa(nombre){
-  var reco = obtenerRecorrido(nombre);
-  clearOverlays();
-  
-  for (var i=0;i<reco.puntos.length;i++) {
-    var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
-    var marker=new google.maps.Marker({
-            position: myLatlng,
-            map:mapa,
-            title: reco.puntos[i].nombre
-        })
-      markersArray[i]=marker;
-  }
+
 
   //Redirige la pagina hacia el mapa
   var tiempo = tiempo || 1000;
   var id="#campo";
   $("html, body").animate({ scrollTop: $(id).offset().top }, tiempo);
+
 }
-*/
+
+
+
 function obtenerRecorrido(nombreRecorrido){
   //Retorna el recorrido correspondiente al nombre: nombreRecorrido
   var arreglo = recorridos;
