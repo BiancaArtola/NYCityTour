@@ -2,6 +2,7 @@ var map;
 var markersArray = [];
 var recorridos;
 var user_id=10209281704397898;
+var lastOpenedInfoWindow;
 
 $(function() {
   //loadStyle(localStorage.getItem("estilo"));
@@ -212,6 +213,8 @@ function cargarEnMapa(nombre){
 
           google.maps.event.addListener(marker, 'click', function() {
             this.info.open(map, this);
+            closeLastOpenedInfoWindow();
+            lastOpenedInfoWindow = this;
           });
 
           markersArray[auxiliarMarker]=marker;
@@ -220,7 +223,6 @@ function cargarEnMapa(nombre){
     });
   }
 
-
   //Redirige la pagina hacia el mapa
   var tiempo = tiempo || 1000;
   var id="#campo";
@@ -228,6 +230,11 @@ function cargarEnMapa(nombre){
 
 }
 
+function closeLastOpenedInfoWindow() {
+    if (lastOpenedInfoWindow) {
+        lastOpenedInfoWindow.info.close();
+    }
+}
 
 function obtenerRecorrido(nombreRecorrido){
   //Retorna el recorrido correspondiente al nombre: nombreRecorrido
