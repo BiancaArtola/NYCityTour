@@ -345,10 +345,7 @@ $(function() {
 });
 
 var logout_event = function(response) {
-  console.log("logout_event");
-  console.log(response.status);
-  console.log(response);
-  alert("DESLOGEO");
+  user_id=undefined;
   }
 
 function statusChangeCallback(response){
