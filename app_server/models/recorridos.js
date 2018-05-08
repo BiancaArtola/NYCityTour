@@ -16,6 +16,10 @@ const esquemaPuntos = new mongoose.Schema({
   coordenadas: {
   	type: [Number],
   	required: true
+  },
+  place_id: {
+    type: String,
+    required: true
   }
 
 })
