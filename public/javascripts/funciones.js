@@ -337,6 +337,7 @@ $(function() {
          user_id=response.authResponse.userID;
        });
       FB.Event.subscribe('auth.logout', logout_event);
+      FB.Event.subscribe('auth.login', login_event);
      FB.Event.subscribe('comment.create',
        function(response) {
        });
@@ -348,7 +349,7 @@ var logout_event = function(response) {
   user_id=undefined;
   }
 
-var logoin_event = function(response) {
+var login_event = function(response) {
   $.get("./");
   }
 
