@@ -320,6 +320,13 @@ function changeStyle(){
   
 }
 
+$(function() {
+  $("#botonfb").click(function(){
+    alert("adentro");
+  });
+
+});
+
 $(function() { 
     window.fbAsyncInit = function() {
       FB.init({
