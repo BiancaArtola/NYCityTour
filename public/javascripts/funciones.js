@@ -350,10 +350,10 @@ var logout_event = function(response) {
   }
 
 var login_event = function(response) {
-  $.get("/", function (Recorridos) 
-  {
-      alert("hola");      
-   });
+  FB.getLoginStatus(function(response) {
+          alert("cambie el userid");
+         user_id=response.authResponse.userID;
+       });
 
   }
 
