@@ -14,14 +14,11 @@ $(function() {
   {
          if(estilos[0]!=undefined)
          {
-            alert("estilo 0 es "+estilos[0].style);
             var estilo=estilos[0].style;
             loadStyle(estilo);
-            alert("entre al if y cambie");
          } 
          else
          {
-            alert("entre al else");
             loadStyle(localStorage.getItem("estilo"));
          } 
    });

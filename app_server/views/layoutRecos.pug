@@ -4,6 +4,8 @@ head
   // Required meta tags
   meta(charset='utf-8')
   meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  link#esti(rel='stylesheet' href='/stylesheets/estilo1.css')
+
   // Bootstrap CSS
   script(type='text/javascript' src='/javascripts/jquery-1.11.0.min.js')
   script(type='text/javascript' src='/javascripts/funcionesRecos.js')
@@ -17,26 +19,38 @@ body
       img(src='https://png.icons8.com/metro/1600/worldwide-location.png' width='30' height='30' alt='')
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
+
+
+    b CIUDADES TURISTICAS
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.mr-auto
       form.form-inline.my-2.my-lg-0
-        .col-md-6
-          button.btn.btn-dark(onclick='changeStyle()' type='submit') Cambiar estilo 
-        .col-md-6
-          button.btn.btn-dark(type='submit') Ingresar 
+        .col-md-7
+         a.nav_link(onclick='changeStyle()', style='cursor:pointer')
+           b Cambiar estilo
+        .col-md-5 
+         ul.nav.navbar-nav
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown')
+             span.glyphicon.glyphicon-user
+              b Usuario
+              span.caret
+            ul.dropdown-menu
+             li
+               fb:login-button(scope='public_profile,email' onlogin='checkLoginState();' autologoutlink='true') 
 
   .container-fluid
-  #nombre_recorrido
-  #tiempo_recorrido
+   #nombre_recorrido.h7
+   #tiempo_recorrido
     strong
       | Tiempo estimado del recorrido:
-  #categoria_recorrido
+   #categoria_recorrido
     strong
       | Categor&iacute;a del recorrido:
-  #tarifa_recorrido
+   #tarifa_recorrido
     strong
       | Tarifa del recorrido:
-  #descripcion_recorrido
+   #descripcion_recorrido
     strong
       | Descripci&oacute;n del recorrido:
-  block content
+   block content

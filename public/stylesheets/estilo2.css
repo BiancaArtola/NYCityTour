@@ -4,7 +4,8 @@
 
 h7, .h7 {
   font-size: 1.60rem;
-  font-family: Copperplate Gothic Light, sans-serif;;
+  font-family: Copperplate Gothic Light, sans-serif;
+    font-weight: bold;
 }
 
 
@@ -14,6 +15,12 @@ h8, .h8{
 }
 
 
+
+#filtrado {
+	border-style: ridge;
+	border-width: 1px;
+	border-color: #000000;
+}
 
 #contenedor_mapa{
 	height: 300px;
@@ -31,7 +38,7 @@ hr, .hr {
 }
 
 #navbar_1 {
-	  background-color: #34495E;
+	  background-color: #7EA2BF;
 }
 
 #boton_home{

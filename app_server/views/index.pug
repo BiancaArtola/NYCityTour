@@ -8,13 +8,28 @@ block content
       img(src='https://png.icons8.com/metro/1600/worldwide-location.png' width='30' height='30' alt='')
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
+
+
+    b CIUDADES TURISTICAS
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.mr-auto
       form.form-inline.my-2.my-lg-0
-        .col-md-6
-          button.btn.btn-dark(onclick='changeStyle()' type='submit') Cambiar estilo 
-        .col-md-6
-          fb:login-button(scope='public_profile,email' onlogin='checkLoginState();' autologoutlink='true') 
+        .col-md-7
+         a.nav_link(onclick='changeStyle()', style='cursor:pointer')
+           b Cambiar estilo
+        .col-md-5 
+         ul.nav.navbar-nav
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown')
+             span.glyphicon.glyphicon-user
+              b Usuario
+              span.caret
+            ul.dropdown-menu
+             li
+               fb:login-button(scope='public_profile,email' onlogin='checkLoginState();' autologoutlink='true') 
+
+
+          
   hr
   .container-fluid
     .row
@@ -64,7 +79,7 @@ block content
                 input#duracion_maxima.form-control(type='duracionMaxima' placeholder='Maxima')
           hr
           li.nav-item
-            button.btn.btn-lg.btn-block.btn-outline-dark(onclick='encontrarChequeado()' type='button') Filtrar
+            button.btn.btn-lg.btn-block.btn-secondary(onclick='encontrarChequeado()' type='button') Filtrar
           hr
       #no_filtrado.col-md-10
         .row
@@ -78,7 +93,6 @@ block content
           +outputCard(recorrido)
          +outputCard(recorridos[2])
          +outputCard(recorridos[3])
-         fb:login-button(scope='public_profile,email' onlogin='checkLoginState();')
          
     hr
     #mapa.row
