@@ -348,6 +348,12 @@ var logout_event = function(response) {
   user_id=undefined;
   }
 
+var logoin_event = function(response) {
+  $.get("./");
+  }
+
+ 
+
 function statusChangeCallback(response){
      if (response.status === 'connected') {
        var uid = response.authResponse.userID;
