@@ -28,17 +28,14 @@ const getEstilos= function(req,res){
 }
 
 const setEstilo=function(req,res){
-  console.log("Los parametros son"+req.body.user+" "+req.body.newstyle);
   var usuario=req.body.user;
   var estilo=req.body.newstyle;
-   console.log("Los parametros son"+usuario+" "+estilo);
   estilos
    .update({"user":usuario},{ "user":usuario,"style":estilo},{upsert:true})
     .exec((err, Recs) => {
       if (err) { 
         res.status(404).json(err);     
       } else {
-        console.log("EN EL BACK: nMatched:"+Recs.nMatched+" nUpserted: "+Recs.nUpserted+" nModified "+Recs.nModified);
         res.status(200).json(Recs);
       }
     })

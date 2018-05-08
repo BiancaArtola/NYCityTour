@@ -5,7 +5,6 @@ var user_id;
 var lastOpenedInfoWindow;
 
 $(function() {
-  //loadStyle(localStorage.getItem("estilo"));
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
@@ -262,7 +261,6 @@ function loadStyle(numeroEstilo){
 }
 
 function changeStyle(){
-  alert("entre al oyente "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
   if(txt=="/stylesheets/estilo1.css")  
   {
@@ -293,7 +291,6 @@ function changeStyle(){
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
     if(user_id!=undefined)
     {
-      alert("entre al if de uid");
       $.ajax({
       url: './api/estilos',
       type: 'POST',
@@ -315,12 +312,6 @@ function changeStyle(){
   
 }
 
-$(function() {
-  $("#botonfb").click(function(){
-    alert("adentro");
-  });
-
-});
 
 $(function() { 
     window.fbAsyncInit = function() {
@@ -351,7 +342,6 @@ var logout_event = function(response) {
 
 var login_event = function(response) {
   FB.getLoginStatus(function(response) {
-          alert("cambie el userid");
          user_id=response.authResponse.userID;
        });
 
@@ -363,11 +353,7 @@ function statusChangeCallback(response){
      if (response.status === 'connected') {
        var uid = response.authResponse.userID;
        var accessToken = response.authResponse.accessToken;
-     } else if (response.status === 'not_authorized') {
-
-     } else { 
-       console.log("hola");    
-     }
+     } 
 }
 
 (function(d, s, id){

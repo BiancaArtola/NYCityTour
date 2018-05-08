@@ -3,7 +3,6 @@ var user_id;
 
 $(function() {
   var al=localStorage.getItem("comentario"+document.title);
-  //cargarComentarios();
   obtenerInformacionJSON();
   
 });
@@ -119,7 +118,7 @@ $(function() {
        });
 	   FB.Event.subscribe('comment.create',
        function(response) {
-          alert('A new comment has been added!');
+         
        });
 
     }
@@ -129,12 +128,7 @@ function statusChangeCallback(response){
      if (response.status === 'connected') {
 	     var uid = response.authResponse.userID;
 	     var accessToken = response.authResponse.accessToken;
-     } else if (response.status === 'not_authorized') {
-
-     } else { 
-     	alert("no logeado");
-     	 console.log("hola");    
-     }
+     } 
 }
 
 (function(d, s, id){
