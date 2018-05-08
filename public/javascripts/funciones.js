@@ -1,7 +1,7 @@
 var map;
 var markersArray = [];
 var recorridos;
-var user_id;
+var user_id=10209281704397898;
 
 $(function() {
   //loadStyle(localStorage.getItem("estilo"));
@@ -248,16 +248,26 @@ function loadStyle(numeroEstilo){
 function changeStyle(){
   alert("entre al oyente "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
+  var data={ "user": user_id,"newstyle": 1 };
   if(txt=="/stylesheets/estilo1.css")  
   {
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
     if(user_id!=undefined)
     {
       alert("entre al if de uid");
-      $.post("./api/estilos?"+$.param({ user: user_id,newstyle:2 }), function (estilos) 
-         {
-            alert("cambie exitosamente");
-         });
+      $.ajax({
+      url: './api/estilos',
+      type: 'POST',
+      data: data,
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "json",
+      success: function(data){ 
+          alert("cambie exitosamente");
+      },
+      error: function(data) {
+          alert("error");
+      }
+     });
     }
     else
     {
@@ -270,11 +280,21 @@ function changeStyle(){
     if(user_id!=undefined)
     {
       alert("entre al if de uid");
-      $.post("./api/estilos?"+$.param({ user: user_id,newstyle: 1 }), function (estilos) 
-         {
-            alert("cambie exitosamente");
-         });
-    }
+      $.ajax({
+      url: './api/estilos',
+      type: 'POST',
+      data: data,
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "json",
+      success: function(data){ 
+          alert("cambie exitosamente");
+      },
+      error: function(data) {
+          alert("erorrr");
+      }
+     });
+    
+     }
     else
     {
        localStorage.setItem("estilo",1);
