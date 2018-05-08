@@ -336,12 +336,20 @@ $(function() {
          status=response.status;
          user_id=response.authResponse.userID;
        });
+      FB.Event.subscribe('auth.logout', logout_event);
      FB.Event.subscribe('comment.create',
        function(response) {
        });
 
     }
 });
+
+var logout_event = function(response) {
+  console.log("logout_event");
+  console.log(response.status);
+  console.log(response);
+  alert("DESLOGEO");
+  }
 
 function statusChangeCallback(response){
      if (response.status === 'connected') {
