@@ -33,7 +33,7 @@ const setEstilo=function(req,res){
   var estilo=req.body.newstyle;
    console.log("Los parametros son"+usuario+" "+estilo);
   estilos
-   .update({},{user:usuario,style:estilo},{upsert:true})
+   .update({"user":usuario},{ "user":usuario,"style":estilo},{upsert:true})
     .exec((err, Recs) => {
       if (err) { 
         res.status(404).json(err);     
