@@ -185,28 +185,31 @@ function cargarEnMapa(nombre){
   var reco = obtenerRecorrido(nombre);
   clearOverlays(); 
 
-  
-  for (var i=0;i<reco.puntos.length;i++) {
-      var aux = reco.puntos[i];
-      var service = new google.maps.places.PlacesService(map);
-      var contentString = "<b>"+ reco.puntos[i].nombre + "</b>" + '<br>' +  reco.puntos[i].direccion
-        + '<br>' + "<img width='200' src=" +  reco.puntos[i].imagen + ">" ;
+  var auxiliarMarker = 0; //a modificar a futuro.
+  var auxiliarImagen = 0; //a modificar a futuro.
 
-      var myLatlng = new google.maps.LatLng(reco.puntos[i].coordenadas[0],reco.puntos[i].coordenadas[1]);
+  for (var i=0;i<reco.puntos.length;i++) {
+
+      var aux = reco.puntos[auxiliarImagen];
+      auxiliarImagen++;
+      var service = new google.maps.places.PlacesService(map);
+     
+
       service.getDetails({ placeId: reco.puntos[i].place_id }, function(place, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             var marker=new google.maps.Marker({
               position: place.geometry.location,
-              // myLatlng,
               map:map
             });
 
-          marker.info = new google.maps.InfoWindow({
-              content: '<div><strong>' + place.name + '</strong><br>' +
+           var contentString = '<div><strong>' + place.name + '</strong><br>' +
                 place.formatted_address + '<br>' +
                 'Rating: ' + place.rating + 
-                '<br>' + "<img width='200' src=" +  aux.imagen + ">" +
-                '</div>',
+                '<br>' + "<img width='200' src=" +  place.photos[0].getUrl({ 'maxWidth': 1000, 'maxHeight': 1000 }) + ">" +
+                '</div>';
+
+          marker.info = new google.maps.InfoWindow({
+              content: contentString,
                 maxWidth: 500
           });
 
@@ -214,7 +217,8 @@ function cargarEnMapa(nombre){
             this.info.open(map, this);
           });
 
-          markersArray[i]=marker;
+          markersArray[auxiliarMarker]=marker;
+          auxiliarMarker++;
      }
     });
   }
