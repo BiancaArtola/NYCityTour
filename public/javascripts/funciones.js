@@ -1,7 +1,7 @@
 var map;
 var markersArray = [];
 var recorridos;
-var user_id="10209281704397898";
+var user_id;
 var lastOpenedInfoWindow;
 
 $(function() {
@@ -314,6 +314,13 @@ function changeStyle(){
   }
   
 }
+
+$(function() {
+  $("#botonfb").click(function(){
+    alert("adentro");
+  });
+
+});
 
 $(function() { 
     window.fbAsyncInit = function() {
