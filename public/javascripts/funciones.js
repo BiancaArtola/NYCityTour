@@ -1,7 +1,7 @@
 var map;
 var markersArray = [];
 var recorridos;
-var user_id="10209281704397898";
+var user_id;
 var lastOpenedInfoWindow;
 
 $(function() {
@@ -333,7 +333,6 @@ $(function() {
          statusChangeCallback(response);
          status=response.status;
          user_id=response.authResponse.userID;
-         alert("user_id "+access_token);
        });
      FB.Event.subscribe('comment.create',
        function(response) {
