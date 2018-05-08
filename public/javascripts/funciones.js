@@ -270,7 +270,6 @@ function changeStyle(){
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
     if(user_id!=undefined)
     {
-      alert("entre al if de uid");
       $.ajax({
       url: './api/estilos',
       type: 'POST',
@@ -278,10 +277,8 @@ function changeStyle(){
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
       dataType: "json",
       success: function(data){ 
-          alert("cambie exitosamente");
       },
       error: function(data) {
-          alert("error");
       }
      });
     }
@@ -304,10 +301,8 @@ function changeStyle(){
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
       dataType: "json",
       success: function(data){ 
-          alert("cambie exitosamente");
       },
       error: function(data) {
-          alert("erorrr");
       }
      });
     
@@ -333,11 +328,9 @@ $(function() {
          statusChangeCallback(response);
          status=response.status;
          user_id=response.authResponse.userID;
-         alert("user_id "+access_token);
        });
      FB.Event.subscribe('comment.create',
        function(response) {
-          alert('A new comment has been added!');
        });
 
     }
@@ -350,7 +343,6 @@ function statusChangeCallback(response){
      } else if (response.status === 'not_authorized') {
 
      } else { 
-      alert("no logeado");
        console.log("hola");    
      }
 }
