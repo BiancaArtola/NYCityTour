@@ -350,7 +350,17 @@ var logout_event = function(response) {
   }
 
 var login_event = function(response) {
-  $.get("./");
+  FB.getLoginStatus(function(response) {
+         alert("hola222");
+         statusChangeCallback(response);
+         status=response.status;
+         user_id=response.authResponse.userID;
+       });
+  $.get("/", function (Recorridos) 
+  {
+      alert("hola");      
+   });
+
   }
 
  
