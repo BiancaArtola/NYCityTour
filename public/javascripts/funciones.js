@@ -1,7 +1,7 @@
 var map;
 var markersArray = [];
 var recorridos;
-var user_id=10209281704397898;
+var user_id="10209281704397898";
 var lastOpenedInfoWindow;
 
 $(function() {
@@ -264,9 +264,9 @@ function loadStyle(numeroEstilo){
 function changeStyle(){
   alert("entre al oyente "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
-  var data={ "user": user_id,"newstyle": 1 };
   if(txt=="/stylesheets/estilo1.css")  
   {
+    var data={ "user": user_id,"newstyle": 2 };
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
     if(user_id!=undefined)
     {
@@ -292,6 +292,7 @@ function changeStyle(){
   }
   else
   {
+    var data={ "user": user_id,"newstyle": 1 };
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
     if(user_id!=undefined)
     {

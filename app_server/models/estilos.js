@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const esquemaEstilos = new mongoose.Schema({
   user: {
-    type: Number,
+    type: String,
     required: true
   },
-  id: {
+  style : {
   	type: Number,
   	required: true
   }
