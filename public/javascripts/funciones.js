@@ -165,7 +165,7 @@ function mostrarRecorridos(cumplen){
         var stringHtml = "https://ciudadesturisticas.herokuapp.com/"+cumplen[i].nombre_url;
 
         //Crea un card con los datos correspondientes al recorrido que debe ser mostrado.
-        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoEnMapa.nombre+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoEnMapa.nombre+"\");'>Cargar en mapa</a> </div></div>";
+        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoEnMapa.nombre+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion_breve+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoEnMapa.nombre+"\");'>Cargar en mapa</a> </div></div>";
 
         cantCumple++;
     }

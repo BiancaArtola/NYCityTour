@@ -57,6 +57,10 @@ const esquemaRecorridos = new mongoose.Schema({
   puntos: {
   	type: [esquemaPuntos],
   	required: true
+  },
+  descripcion_breve: {
+    type: String,
+    required: true
   }
 
 });
