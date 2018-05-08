@@ -14,7 +14,7 @@ block content
         .col-md-6
           button.btn.btn-dark(onclick='changeStyle()' type='submit') Cambiar estilo 
         .col-md-6
-          button.btn.btn-dark(type='submit') Ingresar 
+          fb:login-button(scope='public_profile,email' onlogin='checkLoginState();' autologoutlink='true') 
   hr
   .container-fluid
     .row
