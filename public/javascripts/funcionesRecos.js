@@ -32,61 +32,53 @@ function statusChangeCallback(response){
 }
 
 function obtenerInformacionJSON(){
-  var xmlhttp = new XMLHttpRequest();
-  var url="https://astreiten.github.io/CiudadesTuristicas/bootstrap/js/recorridos.json";
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var myArr = JSON.parse(this.responseText);
-        obtenerDatosRecorridos(myArr);
-
-   	 }
-}
-
-	  xmlhttp.open("GET", url, true);
-	  xmlhttp.send();
+  $.get("./api/recorridos", function (Recorridos) 
+  {
+      obtenerDatosRecorridos(Recorridos);      
+   });
 }
 
 function obtenerDatosRecorridos(myArr){
 	var numeroRecorrido=getNumeroRecorrido(document.title);
 
 	//Obtengo nombre
-	var nombre = myArr.recorridos[numeroRecorrido].nombre;
+	var nombre = myArr[numeroRecorrido].nombre;
     var stringNombre= "<p><h1><strong>"+nombre+"</strong></h1>";
 	document.getElementById("nombre_recorrido").innerHTML= stringNombre;
 
 	//Obtengo tarifa
-	var tarifa = myArr.recorridos[numeroRecorrido].tarifa;
+	var tarifa = myArr[numeroRecorrido].tarifa;
 	document.getElementById("tarifa_recorrido").innerHTML = document.getElementById("tarifa_recorrido").innerHTML +" U$ "+tarifa;
 
 	//Obtengo categoria
-	var categoria = myArr.recorridos[numeroRecorrido].categoria;
+	var categoria = myArr[numeroRecorrido].categoria;
 	document.getElementById("categoria_recorrido").innerHTML = document.getElementById("categoria_recorrido").innerHTML +" "+categoria;
 
 	//Obtengo tiempo estimado
-	var tiempo = myArr.recorridos[numeroRecorrido].tiempo;
+	var tiempo = myArr[numeroRecorrido].tiempo;
 	document.getElementById("tiempo_recorrido").innerHTML = document.getElementById("tiempo_recorrido").innerHTML +" "+tiempo+" horas";
 
 	//Obtengo descripcion
-	var descripcion = myArr.recorridos[numeroRecorrido].descripcion;
+	var descripcion = myArr[numeroRecorrido].descripcion;
 	document.getElementById("descripcion_recorrido").innerHTML = document.getElementById("descripcion_recorrido").innerHTML +" "+descripcion;
 
 	//Obtengo los puntos
-	for (var i =0 ; i < myArr.recorridos[numeroRecorrido].puntos.length; i++)
+	for (var i =0 ; i < myArr[numeroRecorrido].puntos.length; i++)
 		obtenerPuntos(myArr, i);	
 }
 
 function obtenerPuntos(myArr, i){
 	var numeroRecorrido=getNumeroRecorrido(document.title);
 	//Punto 1
-	var punto = myArr.recorridos[numeroRecorrido].puntos[i].nombre;
+	var punto = myArr[numeroRecorrido].puntos[i].nombre;
 	document.getElementById("titulo_punto"+i).innerHTML = punto;
 	
 
-	var direccionPunto = myArr.recorridos[numeroRecorrido].puntos[i].direccion;
+	var direccionPunto = myArr[numeroRecorrido].puntos[i].direccion;
 	document.getElementById("direccion_punto"+i).innerHTML = direccionPunto;
 	
 
-	var imagen = myArr.recorridos[numeroRecorrido].puntos[i].imagen;
+	var imagen = myArr[numeroRecorrido].puntos[i].imagen;
 	var lugarImagen = document.getElementById("imagen_punto"+i).setAttribute('src',imagen);
 
 }
