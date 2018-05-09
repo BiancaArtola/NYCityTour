@@ -15,6 +15,7 @@ $(function() {
          if(estilos[0]!=undefined)
          {
             var estilo=estilos[0].style;
+            alert("traje el estlo "+estilo);
             loadStyle(estilo);
          } 
          else
@@ -261,6 +262,7 @@ function loadStyle(numeroEstilo){
 }
 
 function changeStyle(){
+  alert("el userid es "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
   if(txt=="/stylesheets/estilo1.css")  
   {
