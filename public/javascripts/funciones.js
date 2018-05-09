@@ -338,12 +338,16 @@ $(function() {
 });
 
 var logout_event = function(response) {
+  alert("antes del logout "+user_id);
   user_id=undefined;
+  alert("despues del logout "+user_id);
   }
 
 var login_event = function(response) {
   FB.getLoginStatus(function(response) {
+         alert("antes del login "+user_id);
          user_id=response.authResponse.userID;
+         alert("despues del login "+user_id);
        });
 
   }
