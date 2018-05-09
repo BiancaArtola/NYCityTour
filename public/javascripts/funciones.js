@@ -10,12 +10,11 @@ $(function() {
       recorridos=Recorridos;      
    });
 
-  $.get("./api/estilos",{"user":user_id}, function (estilos) 
+  $.get("./api/estilos?"+user_id, function (estilos) 
   {
          if(estilos[0]!=undefined)
          {
             var estilo=estilos[0].style;
-            alert("traje el estlo "+estilo);
             loadStyle(estilo);
          } 
          else
@@ -339,7 +338,6 @@ $(function() {
 });
 
 var logout_event = function(response) {
-  alert("hola rstoy en logout");
   user_id=undefined;
   }
 
