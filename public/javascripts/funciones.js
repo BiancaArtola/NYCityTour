@@ -5,11 +5,34 @@ var user_id;
 var lastOpenedInfoWindow;
 
 $(function() {
+  alert("el userid aca es "+user_id);
+   window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '863010233882857',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.0'
+      });
+      FB.AppEvents.logPageView();
+      FB.getLoginStatus(function(response) {
+         statusChangeCallback(response);
+         status=response.status;
+         user_id=response.authResponse.userID;
+         alert("LO CAMBIE es "+user_id);
+       });
+      FB.Event.subscribe('auth.logout', logout_event);
+      FB.Event.subscribe('auth.login', login_event);
+     FB.Event.subscribe('comment.create',
+       function(response) {
+       });
+
+    }
+  alert("el userid aca es "+user_id);
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
    });
-  alert("estoy en inicio, el user id es "+user_id);
+  alert("el userid aca es "+user_id);
   $.get("./api/estilos?"+user_id, function (estilos) 
   {
          if(estilos[0]!=undefined)
@@ -22,6 +45,7 @@ $(function() {
             loadStyle(localStorage.getItem("estilo"));
          } 
    });
+  alert("el userid aca es "+user_id);
  });
 
 
@@ -261,7 +285,7 @@ function loadStyle(numeroEstilo){
 }
 
 function changeStyle(){
-  alert("el userid es "+user_id);
+  alert("el userid aca es "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
   if(txt=="/stylesheets/estilo1.css")  
   {
