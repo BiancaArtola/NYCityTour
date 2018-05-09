@@ -9,7 +9,7 @@ $(function() {
   {
       recorridos=Recorridos;      
    });
-
+  alert("estoy en inicio, el user id es "+user_id);
   $.get("./api/estilos?"+user_id, function (estilos) 
   {
          if(estilos[0]!=undefined)
