@@ -339,6 +339,7 @@ $(function() {
 });
 
 var logout_event = function(response) {
+  alert("hola rstoy en logout");
   user_id=undefined;
   }
 
