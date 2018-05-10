@@ -22,9 +22,8 @@ $(function() {
        });
       FB.Event.subscribe('auth.logout', logout_event);
       FB.Event.subscribe('auth.login', login_event);
-     FB.Event.subscribe('comment.create',
-       function(response) {
-       });
+      FB.Event.subscribe('comment.create',
+       function(response) {});
 
     }
   alert("el userid aca es "+user_id);
@@ -35,15 +34,12 @@ $(function() {
   alert("el userid aca es "+user_id);
   $.get("./api/estilos?"+user_id, function (estilos) 
   {
-         if(estilos[0]!=undefined)
-         {
+         if(estilos[0]!=undefined){
             var estilo=estilos[0].style;
             loadStyle(estilo);
-         } 
-         else
-         {
+         }else        
             loadStyle(localStorage.getItem("estilo"));
-         } 
+         
    });
   alert("el userid aca es "+user_id);
  });
@@ -140,9 +136,8 @@ function chequearMovilidad(recorrido,movilidad_valor){
     return true;
   else{
     for (var i=0; i<recorrido.apto.length ; i ++){
-      if (recorrido.apto[i] == movilidad_valor.toLowerCase()){
+      if (recorrido.apto[i] == movilidad_valor.toLowerCase())
        return true;
-      }
     }
     return false;
   }
@@ -188,7 +183,10 @@ function mostrarRecorridos(cumplen){
         var stringHtml = "https://ciudadesturisticas.herokuapp.com/"+cumplen[i].nombre_url;
 
         //Crea un card con los datos correspondientes al recorrido que debe ser mostrado.
-        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+" target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+recorridoEnMapa.nombre+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion_breve+"</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoEnMapa.nombre+"\");'>Cargar en mapa</a> </div></div>";
+        stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+
+          " target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+
+          recorridoEnMapa.nombre+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion_breve+
+          "</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoEnMapa.nombre+"\");'>Cargar en mapa</a> </div></div>";
 
         cantCumple++;
     }
@@ -254,9 +252,9 @@ function cargarEnMapa(nombre){
 }
 
 function closeLastOpenedInfoWindow() {
-    if (lastOpenedInfoWindow) {
+  //Cierra el infoWindow que se encuentra abierto actualmente.
+    if (lastOpenedInfoWindow)
         lastOpenedInfoWindow.info.close();
-    }
 }
 
 function obtenerRecorrido(nombreRecorrido){
@@ -269,9 +267,9 @@ function obtenerRecorrido(nombreRecorrido){
 }
 
 function clearOverlays() {
-  for (var i = 0; i < markersArray.length; i++ ) {
+  //Elimina los markers que se encuentran actualmente en el mapa
+  for (var i = 0; i < markersArray.length; i++ )
     markersArray[i].setMap(null);
-  }
   markersArray.length = 0;
 }
 
@@ -287,54 +285,39 @@ function loadStyle(numeroEstilo){
 function changeStyle(){
   alert("el userid aca es "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
-  if(txt=="/stylesheets/estilo1.css")  
-  {
+  if(txt=="/stylesheets/estilo1.css") {
     var data={ "user": user_id,"newstyle": 2 };
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
-    if(user_id!=undefined)
-    {
+    if(user_id!=undefined) {
       $.ajax({
       url: './api/estilos',
       type: 'POST',
       data: data,
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
       dataType: "json",
-      success: function(data){ 
-      },
-      error: function(data) {
-      }
+      success: function(data){},
+      error: function(data) {}
      });
-    }
-    else
-    {
-      localStorage.setItem("estilo",2);
-    }   
-  }
-  else
-  {
+    }else
+      localStorage.setItem("estilo",2); 
+  }else{
     var data={ "user": user_id,"newstyle": 1 };
     document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
-    if(user_id!=undefined)
-    {
+    if(user_id!=undefined){
       $.ajax({
       url: './api/estilos',
       type: 'POST',
       data: data,
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
       dataType: "json",
-      success: function(data){ 
-      },
-      error: function(data) {
-      }
+      success: function(data){},
+      error: function(data) {}
      });
     
-     }
+    }
     else
-    {
-       localStorage.setItem("estilo",1);
-    } 
-  }
-  
+      localStorage.setItem("estilo",1);    
+  }  
 }
 
 
@@ -354,10 +337,8 @@ $(function() {
        });
       FB.Event.subscribe('auth.logout', logout_event);
       FB.Event.subscribe('auth.login', login_event);
-     FB.Event.subscribe('comment.create',
-       function(response) {
-       });
-
+      FB.Event.subscribe('comment.create',
+       function(response) {});
     }
 });
 
@@ -377,7 +358,6 @@ var login_event = function(response) {
   }
 
  
-
 function statusChangeCallback(response){
      if (response.status === 'connected') {
        var uid = response.authResponse.userID;
