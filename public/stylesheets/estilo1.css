@@ -1,17 +1,7 @@
-#ultima_fila {
-	  background-color: #A2D9CE;
-}
-
 h7, .h7 {
   font-size: 1.60rem;
   font-family: Copperplate Gothic Light, sans-serif;
   font-weight: bold;
-}
-
-
-h8, .h8{
-	font-size: 1.20rem;
-	color: #A2D9CE;
 }
 
 #filtrado {
@@ -37,17 +27,4 @@ hr, .hr {
 
 #navbar_1 {
 	  background-color: #EAEDED  ;
-}
-
-#boton_home{
-	background-color: #A2D9CE;
-}
-
-
-#boton_estilo{
-	background-color: #A2D9CE;
-}
-
-h12, .h12 {
-	color: #000000;
 }
