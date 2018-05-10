@@ -4,13 +4,39 @@ var recorridos;
 var user_id;
 var lastOpenedInfoWindow;
 
+$(function() { 
+    alert("entre a la funcin de inicio");
+    window.fbAsyncInit = function() {
+      alert("entre al callback");
+      FB.init({
+        appId      : '863010233882857',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.0'
+      });
+      FB.AppEvents.logPageView();
+      FB.getLoginStatus(function(response) {
+         statusChangeCallback(response);
+         //alert("ESTOY HACIENDO EL CAMBIO");
+         status=response.status;
+         user_id=response.authResponse.userID;
+         alert("hice el cambio: "+user_id);
+
+       });
+      FB.Event.subscribe('auth.logout', logout_event);
+      FB.Event.subscribe('auth.login', login_event);
+      FB.Event.subscribe('comment.create',
+       function(response) {});
+    }
+});
+
 $(function() {
-  alert("el userid aca es "+user_id);
+  alert("1 el userid aca es "+user_id);
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
    });
-  alert("el userid aca es "+user_id);
+  alert("2 el userid aca es "+user_id);
   $.get("./api/estilos?"+user_id, function (estilos) 
   {
          if(estilos[0]!=undefined){
@@ -20,7 +46,7 @@ $(function() {
             loadStyle(localStorage.getItem("estilo"));
          
    });
-  alert("el userid aca es "+user_id);
+  alert("3 el userid aca es "+user_id);
  });
 
 
@@ -300,29 +326,7 @@ function changeStyle(){
 }
 
 
-$(function() { 
-    alert("entre a la funcin de inicio");
-    window.fbAsyncInit = function() {
-      alert("entre al callback");
-      FB.init({
-        appId      : '863010233882857',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v3.0'
-      });
-      FB.AppEvents.logPageView();
-      FB.getLoginStatus(function(response) {
-         statusChangeCallback(response);
-         alert("ESTOY HACIENDO EL CAMBIO");
-         status=response.status;
-         user_id=response.authResponse.userID;
-       });
-      FB.Event.subscribe('auth.logout', logout_event);
-      FB.Event.subscribe('auth.login', login_event);
-      FB.Event.subscribe('comment.create',
-       function(response) {});
-    }
-});
+
 
 var logout_event = function(response) {
   alert("antes del logout "+user_id);
