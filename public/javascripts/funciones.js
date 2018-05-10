@@ -331,7 +331,7 @@ var logout_event = function(response) {
   alert("antes del logout "+user_id);
   user_id=undefined;
   alert("despues del logout "+user_id);
-  reload();
+  window.location.reload(false);
   }
 
 var login_event = function(response) {
@@ -339,7 +339,7 @@ var login_event = function(response) {
          alert("antes del login "+user_id);
          user_id=response.authResponse.userID;
          alert("despues del login "+user_id);
-         reload();
+         window.location.reload(false);
        });
 
   }
