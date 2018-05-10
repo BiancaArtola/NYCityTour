@@ -331,6 +331,7 @@ var logout_event = function(response) {
   alert("antes del logout "+user_id);
   user_id=undefined;
   alert("despues del logout "+user_id);
+  reload();
   }
 
 var login_event = function(response) {
