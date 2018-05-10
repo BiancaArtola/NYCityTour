@@ -18,9 +18,10 @@ $(function() {
       FB.getLoginStatus(function(response) {
         alert("ESTOY EN GET STAT");
          status=response.status;
+         if(status==='connected'){
          user_id=response.authResponse.userID;
          alert("hice el cambio: "+user_id);
-          alert("1 el userid aca es "+user_id);
+        }
          $.get("./api/recorridos", function (Recorridos) 
           {
           recorridos=Recorridos;      
@@ -28,6 +29,7 @@ $(function() {
           alert("2 el userid aca es "+user_id);
            $.get("./api/estilos?"+user_id, function (estilos) 
              {
+          alert("traje el estilo "+estilos[0].style);
          if(estilos[0]!=undefined){
             var estilo=estilos[0].style;
             loadStyle(estilo);
