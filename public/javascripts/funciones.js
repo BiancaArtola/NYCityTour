@@ -6,27 +6,6 @@ var lastOpenedInfoWindow;
 
 $(function() {
   alert("el userid aca es "+user_id);
-   window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '863010233882857',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v3.0'
-      });
-      FB.AppEvents.logPageView();
-      FB.getLoginStatus(function(response) {
-         statusChangeCallback(response);
-         status=response.status;
-         user_id=response.authResponse.userID;
-         alert("LO CAMBIE es "+user_id);
-       });
-      FB.Event.subscribe('auth.logout', logout_event);
-      FB.Event.subscribe('auth.login', login_event);
-      FB.Event.subscribe('comment.create',
-       function(response) {});
-
-    }
-  alert("el userid aca es "+user_id);
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
@@ -322,7 +301,9 @@ function changeStyle(){
 
 
 $(function() { 
+    alert("entre a la funcin de inicio");
     window.fbAsyncInit = function() {
+      alert("entre al callback");
       FB.init({
         appId      : '863010233882857',
         cookie     : true,
@@ -332,6 +313,7 @@ $(function() {
       FB.AppEvents.logPageView();
       FB.getLoginStatus(function(response) {
          statusChangeCallback(response);
+         alert("ESTOY HACIENDO EL CAMBIO");
          status=response.status;
          user_id=response.authResponse.userID;
        });
@@ -359,6 +341,7 @@ var login_event = function(response) {
 
  
 function statusChangeCallback(response){
+  alert("entre a status change callback");
      if (response.status === 'connected') {
        var uid = response.authResponse.userID;
        var accessToken = response.authResponse.accessToken;
