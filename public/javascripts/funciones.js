@@ -27,7 +27,7 @@ $(function() {
           recorridos=Recorridos;      
           });
           alert("2 el userid aca es "+user_id);
-           $.get("./api/estilos?"+user_id, function (estilos) 
+           $.get("./api/estilos?user="+user_id,function (estilos) 
              {
           alert("traje el estilo "+estilos[0].style);
          if(estilos[0]!=undefined){
