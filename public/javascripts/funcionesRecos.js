@@ -8,22 +8,17 @@ $(function() {
 });
 
 function oyentePaginaRecorrido(){
-	if(status==='connected')
-	{
-		$(function() {
-  
-        FB.api('/me', {fields:'name'}, function(response) {
-          alert(response);
+	if(status==='connected'){
+		$(function() {  
+	        FB.api('/me', {fields:'name'}, function(response) {
+	          alert(response);
 		});
 		var texto= document.getElementById("paginaRecorrido").value;
 	    localStorage.setItem("comentario"+document.title,texto);
 	    cargarComentarios();
-	}
-     )}
+		})}
 	else
-	{
 		alert("Para poder ingresar comentarios debe estar logueado.");
-	}
 }
  
 function statusChangeCallback(response){
@@ -31,8 +26,7 @@ function statusChangeCallback(response){
 }
 
 function obtenerInformacionJSON(){
-  $.get("./api/recorridos", function (Recorridos) 
-  {
+  $.get("./api/recorridos", function (Recorridos) {
       obtenerDatosRecorridos(Recorridos);      
    });
 }
@@ -68,10 +62,9 @@ function obtenerDatosRecorridos(myArr){
 
 function obtenerPuntos(myArr, i){
 	var numeroRecorrido=getNumeroRecorrido(document.title);
-	//Punto 1
+
 	var punto = myArr[numeroRecorrido].puntos[i].nombre;
-	document.getElementById("titulo_punto"+i).innerHTML = punto;
-	
+	document.getElementById("titulo_punto"+i).innerHTML = punto;	
 
 	var direccionPunto = myArr[numeroRecorrido].puntos[i].direccion;
 	document.getElementById("direccion_punto"+i).innerHTML = direccionPunto;
@@ -79,15 +72,6 @@ function obtenerPuntos(myArr, i){
 
 	var imagen = myArr[numeroRecorrido].puntos[i].imagen;
 	var lugarImagen = document.getElementById("imagen_punto"+i).setAttribute('src',imagen);
-
-}
-
-function borrarContenido(){
-	document.getElementById("paginaRecorrido").innerHTML = "";
-}
-
-function cargarComentarios(){
-	document.getElementById("exampleFormControlTextarea1").value=localStorage.getItem("comentario"+document.title);
 }
 
 function getNumeroRecorrido(numeroRecorrido){
@@ -125,10 +109,10 @@ $(function() {
 });
 
 function statusChangeCallback(response){
-     if (response.status === 'connected') {
-	     var uid = response.authResponse.userID;
-	     var accessToken = response.authResponse.accessToken;
-     } 
+    if (response.status === 'connected') {
+	    var uid = response.authResponse.userID;
+	    var accessToken = response.authResponse.accessToken;
+    } 
 }
 
 (function(d, s, id){
