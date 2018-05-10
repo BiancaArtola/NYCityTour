@@ -338,6 +338,7 @@ var login_event = function(response) {
          alert("antes del login "+user_id);
          user_id=response.authResponse.userID;
          alert("despues del login "+user_id);
+         reload();
        });
 
   }
