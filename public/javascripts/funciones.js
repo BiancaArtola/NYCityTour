@@ -16,33 +16,33 @@ $(function() {
       });
       FB.AppEvents.logPageView();
       FB.getLoginStatus(function(response) {
-         statusChangeCallback(response);
-         //alert("ESTOY HACIENDO EL CAMBIO");
+        alert("ESTOY EN GET STAT");
          status=response.status;
          user_id=response.authResponse.userID;
          alert("hice el cambio: "+user_id);
-
-       });
-      FB.Event.subscribe('auth.logout', logout_event);
-      FB.Event.subscribe('auth.login', login_event);
-      FB.Event.subscribe('comment.create',
-       function(response) {});
-       alert("1 el userid aca es "+user_id);
-  $.get("./api/recorridos", function (Recorridos) 
-  {
-      recorridos=Recorridos;      
-   });
-  alert("2 el userid aca es "+user_id);
-  $.get("./api/estilos?"+user_id, function (estilos) 
-  {
+          alert("1 el userid aca es "+user_id);
+         $.get("./api/recorridos", function (Recorridos) 
+          {
+          recorridos=Recorridos;      
+          });
+          alert("2 el userid aca es "+user_id);
+           $.get("./api/estilos?"+user_id, function (estilos) 
+             {
          if(estilos[0]!=undefined){
             var estilo=estilos[0].style;
             loadStyle(estilo);
          }else        
             loadStyle(localStorage.getItem("estilo"));
          
-   });
-  alert("3 el userid aca es "+user_id);
+            });
+          alert("3 el userid aca es "+user_id);
+
+       });
+      FB.Event.subscribe('auth.logout', logout_event);
+      FB.Event.subscribe('auth.login', login_event);
+      FB.Event.subscribe('comment.create',
+       function(response) {});
+
     }
 });
 
