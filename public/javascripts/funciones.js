@@ -27,11 +27,7 @@ $(function() {
       FB.Event.subscribe('auth.login', login_event);
       FB.Event.subscribe('comment.create',
        function(response) {});
-    }
-});
-
-$(function() {
-  alert("1 el userid aca es "+user_id);
+       alert("1 el userid aca es "+user_id);
   $.get("./api/recorridos", function (Recorridos) 
   {
       recorridos=Recorridos;      
@@ -47,7 +43,8 @@ $(function() {
          
    });
   alert("3 el userid aca es "+user_id);
- });
+    }
+});
 
 
 function initMap() {
