@@ -5,9 +5,9 @@ var user_id;
 var lastOpenedInfoWindow;
 
 $(function() { 
-    alert("entre a la funcin de inicio");
+    //alert("entre a la funcin de inicio");
     window.fbAsyncInit = function() {
-      alert("entre al callback");
+      //alert("entre al callback");
       FB.init({
         appId      : '863010233882857',
         cookie     : true,
@@ -16,20 +16,20 @@ $(function() {
       });
       FB.AppEvents.logPageView();
       FB.getLoginStatus(function(response) {
-        alert("ESTOY EN GET STAT");
+       // alert("ESTOY EN GET STAT");
          status=response.status;
          if(status==='connected'){
          user_id=response.authResponse.userID;
-         alert("hice el cambio: "+user_id);
+         //alert("hice el cambio: "+user_id);
         }
          $.get("./api/recorridos", function (Recorridos) 
           {
           recorridos=Recorridos;      
           });
-          alert("2 el userid aca es "+user_id);
+          //alert("2 el userid aca es "+user_id);
            $.get("./api/estilos?user="+user_id,function (estilos) 
              {
-          alert("traje el estilo "+estilos[0].style);
+          //alert("traje el estilo "+estilos[0].style);
          if(estilos[0]!=undefined){
             var estilo=estilos[0].style;
             loadStyle(estilo);
@@ -37,7 +37,7 @@ $(function() {
             loadStyle(localStorage.getItem("estilo"));
          
             });
-          alert("3 el userid aca es "+user_id);
+         // alert("3 el userid aca es "+user_id);
 
        });
       FB.Event.subscribe('auth.logout', logout_event);
@@ -328,17 +328,17 @@ function changeStyle(){
 
 
 var logout_event = function(response) {
-  alert("antes del logout "+user_id);
+  //alert("antes del logout "+user_id);
   user_id=undefined;
-  alert("despues del logout "+user_id);
+  //alert("despues del logout "+user_id);
   window.location.reload(false);
   }
 
 var login_event = function(response) {
   FB.getLoginStatus(function(response) {
-         alert("antes del login "+user_id);
+        //alert("antes del login "+user_id);
          user_id=response.authResponse.userID;
-         alert("despues del login "+user_id);
+        // alert("despues del login "+user_id);
          window.location.reload(false);
        });
 
