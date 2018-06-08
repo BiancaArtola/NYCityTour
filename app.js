@@ -3,16 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 require('./app_server/models/db');
 
 var indexRouter = require('./app_server/routes/index');
-var usersRouter = require('./app_server/routes/users');
-var bicisRouter = require('./app_server/routes/bicicletas');
-var juvenilRouter = require('./app_server/routes/juvenil');
-var midtownRouter = require('./app_server/routes/midtown');
-var museosRouter = require('./app_server/routes/museos');
 var apiRouter = require('./app_server/routes/api');
+
+
+
 
 var app = express();
 
@@ -26,11 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/bicicletas', bicisRouter);
-app.use('/juvenil', juvenilRouter);
-app.use('/midtown', midtownRouter);
-app.use('/museosny', museosRouter);
+app.use('/recorridos',indexRouter);
 app.use('/api',apiRouter);
 
 
@@ -48,5 +44,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

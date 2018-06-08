@@ -4,6 +4,7 @@ const recorridos = mongoose.model('recorridos');
 const estilos=mongoose.model('estilos');
 
 const getRecorridos = function (req, res) {
+  console.log("hola");
   recorridos
     .find()
     .exec((err, Recs) => {
@@ -39,6 +40,19 @@ const setEstilo=function(req,res){
         res.status(200).json(Recs);
       }
     })
+}
+
+const getRecoByURL=function(req,res){
+  recorridos
+    .find({"nombre_url":req.query.url})
+    .exec((err, Recs) => {
+      if (err) { 
+        res.status(404).json(err);    
+      } else {
+        res.status(200).json(Recs);
+      }
+    })
+
 }
 
 module.exports = { getRecorridos, getEstilos, setEstilo };

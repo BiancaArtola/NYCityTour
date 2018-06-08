@@ -26,63 +26,74 @@ function statusChangeCallback(response){
 }
 
 function obtenerInformacionJSON(){
-  $.get("./api/recorridos", function (Recorridos) {
+  $.get("/api/recorridos", function (Recorridos) {
       obtenerDatosRecorridos(Recorridos);      
    });
 }
 
 function obtenerDatosRecorridos(myArr){
-	var numeroRecorrido=getNumeroRecorrido(document.title);
+	var reco=getNumeroRecorrido(myArr,document.title);
 
 	//Obtengo nombre
-	var nombre = myArr[numeroRecorrido].nombre;
+	var nombre = reco.nombre;
     var stringNombre= "<p><h1><strong>"+nombre+"</strong></h1>";
 	document.getElementById("nombre_recorrido").innerHTML= stringNombre;
 
 	//Obtengo tarifa
-	var tarifa = myArr[numeroRecorrido].tarifa;
+	var tarifa = reco.tarifa;
 	document.getElementById("tarifa_recorrido").innerHTML = document.getElementById("tarifa_recorrido").innerHTML +" U$ "+tarifa;
 
 	//Obtengo categoria
-	var categoria = myArr[numeroRecorrido].categoria;
+	var categoria = reco.categoria;
 	document.getElementById("categoria_recorrido").innerHTML = document.getElementById("categoria_recorrido").innerHTML +" "+categoria;
 
 	//Obtengo tiempo estimado
-	var tiempo = myArr[numeroRecorrido].tiempo;
+	var tiempo = reco.tiempo;
 	document.getElementById("tiempo_recorrido").innerHTML = document.getElementById("tiempo_recorrido").innerHTML +" "+tiempo+" horas";
 
 	//Obtengo descripcion
-	var descripcion = myArr[numeroRecorrido].descripcion;
+	var descripcion = reco.descripcion;
 	document.getElementById("descripcion_recorrido").innerHTML = document.getElementById("descripcion_recorrido").innerHTML +" "+descripcion;
 
 	//Obtengo los puntos
-	for (var i =0 ; i < myArr[numeroRecorrido].puntos.length; i++)
-		obtenerPuntos(myArr, i);	
+	for (var i =0 ; i < reco.puntos.length; i++)
+		obtenerPuntos(reco.puntos[i]);	
 }
 
-function obtenerPuntos(myArr, i){
-	var numeroRecorrido=getNumeroRecorrido(document.title);
+function obtenerPuntos(punto){
+	let map = new google.maps.Map(document.createElement('div'));
+	this.googlePlaces = new google.maps.places.PlacesService(map);
+    this.googlePlaces.getDetails({
+          placeId: punto.place_id
+        },  function(place, status) { 
 
-	var punto = myArr[numeroRecorrido].puntos[i].nombre;
-	document.getElementById("titulo_punto"+i).innerHTML = punto;	
-
-	var direccionPunto = myArr[numeroRecorrido].puntos[i].direccion;
-	document.getElementById("direccion_punto"+i).innerHTML = direccionPunto;
+        	var puntoNombre = punto.nombre;
 	
+		document.getElementsByName("titulo_"+punto.place_id)[0].innerHTML = place.name;	
 
-	var imagen = myArr[numeroRecorrido].puntos[i].imagen;
-	var lugarImagen = document.getElementById("imagen_punto"+i).setAttribute('src',imagen);
+		var direccionPunto = punto.direccion;
+		document.getElementsByName("direccion_"+punto.place_id)[0].innerHTML = place.formatted_address;
+		
+
+		var imagen = place.photos[0].getUrl({ 'maxWidth': 1000, 'maxHeight': 1000 });
+		var lugarImagen = document.getElementsByName("imagen_"+punto.place_id)[0].setAttribute('src',imagen);
+
+        });
+	
+	
 }
 
-function getNumeroRecorrido(numeroRecorrido){
-	if (numeroRecorrido=="Museos Nueva York")
-		return 0;
-	else if (numeroRecorrido=="Recorrido juvenil")
-		return 1;	
-	else if (numeroRecorrido=="Recorrido para bicicletas")
-		return 2;	
-	else
-		return 3;	
+function getNumeroRecorrido(myArr,nombreRecorrido){
+	
+	for(var i=0; i<myArr.length;i++)
+	{	
+	
+		if (myArr[i].nombre_url===nombreRecorrido)
+		{
+			alert(nombreRecorrido);
+			return myArr[i];
+		}
+	}	
 }
 
 $(function() { 

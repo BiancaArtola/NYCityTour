@@ -1,0 +1,8 @@
+extends layoutRecos
+
+block content
+ hr
+ .row
+  each punto in reco[0].puntos
+   +pointCard(punto)
+

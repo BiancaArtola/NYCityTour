@@ -1,4 +1,5 @@
 doctype html
+include shared/HTMLfunctions
 head
   title= title
   // Required meta tags
@@ -7,6 +8,7 @@ head
   link#esti(rel='stylesheet' href='/stylesheets/estilo1.css')
 
   // Bootstrap CSS
+  script(async='' defer='' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD_mVCh6mJWkCl-rmCyWITJdMHIIqr-PRE&libraries=places')
   script(type='text/javascript' src='/javascripts/jquery-1.11.0.min.js')
   script(type='text/javascript' src='/javascripts/funcionesRecos.js')
   link(rel='shortcut icon' href='https://png.icons8.com/metro/1600/worldwide-location.png')
