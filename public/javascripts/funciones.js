@@ -5,7 +5,9 @@ var user_id;
 var lastOpenedInfoWindow;
 
 $(function() { 
+    //alert("entre a la funcin de inicio");
     window.fbAsyncInit = function() {
+      //alert("entre al callback");
       FB.init({
         appId      : '863010233882857',
         cookie     : true,
@@ -14,79 +16,37 @@ $(function() {
       });
       FB.AppEvents.logPageView();
       FB.getLoginStatus(function(response) {
+       // alert("ESTOY EN GET STAT");
          status=response.status;
-         if(status==='connected')
-          user_id=response.authResponse.userID;        
-         $.get("./api/recorridos", function (Recorridos){
-            recorridos=Recorridos;      
-         });
-         
-        $.get("./api/estilos?user="+user_id,function (estilos) {
+         if(status==='connected'){
+         user_id=response.authResponse.userID;
+         //alert("hice el cambio: "+user_id);
+        }
+         $.get("./api/recorridos", function (Recorridos) 
+          {
+          recorridos=Recorridos;      
+          });
+          //alert("2 el userid aca es "+user_id);
+           $.get("./api/estilos?user="+user_id,function (estilos) 
+             {
+          //alert("traje el estilo "+estilos[0].style);
          if(estilos[0]!=undefined){
             var estilo=estilos[0].style;
             loadStyle(estilo);
          }else        
             loadStyle(localStorage.getItem("estilo"));
-         });
-      });
+         
+            });
+         // alert("3 el userid aca es "+user_id);
+
+       });
       FB.Event.subscribe('auth.logout', logout_event);
       FB.Event.subscribe('auth.login', login_event);
-      FB.Event.subscribe('comment.create', function(response) {});
+      FB.Event.subscribe('comment.create',
+       function(response) {});
+
     }
 });
-
-
-function changeStyle(){
-  var txt=document.getElementById("esti").getAttribute('href');
-  if(txt=="/stylesheets/estilo1.css") {
-    var data={ "user": user_id,"newstyle": 2 };
-    document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
-    if(user_id!=undefined)
-      postStyle(data);
-    else
-      localStorage.setItem("estilo",2); 
-  }else{
-    var data={ "user": user_id,"newstyle": 1 };
-    document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
-    if(user_id!=undefined)
-     postStyle(data);
-    else
-      localStorage.setItem("estilo",1);    
-  }  
-}
-
-function postStyle(data){
-   $.ajax({
-      url: './api/estilos',
-      type: 'POST',
-      data: data,
-      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-      dataType: "json",
-      success: function(data){},
-      error: function(data) {}
-     });
-}
-
-var logout_event = function(response) {
-  user_id=undefined;
-  window.location.reload(false);
-}
-
-var login_event = function(response) {
-  FB.getLoginStatus(function(response) {
-         user_id=response.authResponse.userID;
-         window.location.reload(false);
-  });
-
-}
-
- function statusChangeCallback(response){
-  if (response.status === 'connected') {
-    var uid = response.authResponse.userID;
-    var accessToken = response.authResponse.accessToken;
-  } 
-}
-
 
 
 function initMap() {
@@ -96,6 +56,7 @@ function initMap() {
     zoom: 12
    });
 }
+
 
 function encontrarChequeado(){
   clearOverlays(); //Remueve los marcadores que se encontraban en el mapa de un recorrido seleccionado. 
@@ -169,6 +130,7 @@ function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, catego
         }       
     }
     mostrarRecorridos(cumplen); 
+
 }
 
 
@@ -212,8 +174,9 @@ function chequearTarifa(recorrido, tarifa_minima, tarifa_maxima){
 
 
 function mostrarRecorridos(cumplen){
-  if (cumplen.length == 0)
+  if (cumplen.length == 0){
         alert("No se encontraron recorridos con esas caracteristicas. ");
+  }
   else{
     $(".card").hide();  //Se quitan de la pantalla aquellos recorridos que eran mostrados anteriormente.
     document.getElementById("textoFiltrado").innerHTML ="Recorridos encontrados segun el filtrado";
@@ -315,6 +278,7 @@ function clearOverlays() {
 }
 
 
+
 function loadStyle(numeroEstilo){
   if (numeroEstilo == null) 
     numeroEstilo = 2;
@@ -322,6 +286,72 @@ function loadStyle(numeroEstilo){
   document.getElementById('esti').setAttribute('href',style);
 }
 
+function changeStyle(){
+  alert("el userid aca es "+user_id);
+  var txt=document.getElementById("esti").getAttribute('href');
+  if(txt=="/stylesheets/estilo1.css") {
+    var data={ "user": user_id,"newstyle": 2 };
+    document.getElementById('esti').setAttribute('href', '/stylesheets/estilo2.css');
+    if(user_id!=undefined) {
+      $.ajax({
+      url: './api/estilos',
+      type: 'POST',
+      data: data,
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "json",
+      success: function(data){},
+      error: function(data) {}
+     });
+    }else
+      localStorage.setItem("estilo",2); 
+  }else{
+    var data={ "user": user_id,"newstyle": 1 };
+    document.getElementById('esti').setAttribute('href', '/stylesheets/estilo1.css');
+    if(user_id!=undefined){
+      $.ajax({
+      url: './api/estilos',
+      type: 'POST',
+      data: data,
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "json",
+      success: function(data){},
+      error: function(data) {}
+     });
+    
+    }
+    else
+      localStorage.setItem("estilo",1);    
+  }  
+}
+
+
+
+
+var logout_event = function(response) {
+  //alert("antes del logout "+user_id);
+  user_id=undefined;
+  //alert("despues del logout "+user_id);
+  window.location.reload(false);
+  }
+
+var login_event = function(response) {
+  FB.getLoginStatus(function(response) {
+        //alert("antes del login "+user_id);
+         user_id=response.authResponse.userID;
+        // alert("despues del login "+user_id);
+         window.location.reload(false);
+       });
+
+  }
+
+ 
+function statusChangeCallback(response){
+  alert("entre a status change callback");
+     if (response.status === 'connected') {
+       var uid = response.authResponse.userID;
+       var accessToken = response.authResponse.accessToken;
+     } 
+}
 
 (function(d, s, id){
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -332,5 +362,6 @@ function loadStyle(numeroEstilo){
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
 
 
