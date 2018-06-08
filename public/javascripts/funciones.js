@@ -5,23 +5,7 @@ var user_id;
 var lastOpenedInfoWindow;
 
 $(function() { 
-    //alert("entre a la funcin de inicio");
-    window.fbAsyncInit = function() {
-      //alert("entre al callback");
-      FB.init({
-        appId      : '863010233882857',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v3.0'
-      });
-      FB.AppEvents.logPageView();
-      FB.getLoginStatus(function(response) {
-       // alert("ESTOY EN GET STAT");
-         status=response.status;
-         if(status==='connected'){
-         user_id=response.authResponse.userID;
-         //alert("hice el cambio: "+user_id);
-        }
+    //alert("entre a la funcin de inicio")
          $.get("./api/recorridos", function (Recorridos) 
           {
           recorridos=Recorridos;      
@@ -40,13 +24,8 @@ $(function() {
          // alert("3 el userid aca es "+user_id);
 
        });
-      FB.Event.subscribe('auth.logout', logout_event);
-      FB.Event.subscribe('auth.login', login_event);
-      FB.Event.subscribe('comment.create',
-       function(response) {});
+      
 
-    }
-});
 
 
 function initMap() {
@@ -123,6 +102,7 @@ function filtrarRecorridos(movilidad_valor, tarifa_minima, tarifa_maxima, catego
         cumpleTarifa=chequearTarifa(myArr[j],tarifa_minima, tarifa_maxima);
         cumpleCategoria=chequearCategoria(myArr[j],categoria_valor);
         cumpleDuracion=chequearDuracion(myArr[j],duracion_minima, duracion_maxima);
+        //alert(myArr[j].nombre+" movi"+cumpleMovilidad);
 
         if(cumpleTarifa && cumpleDuracion && cumpleCategoria && cumpleMovilidad){
             cumplen[cant]=myArr[j];
@@ -139,12 +119,10 @@ function chequearMovilidad(recorrido,movilidad_valor){
   if (movilidad_valor.localeCompare("Todos los medios") == 0)
     return true;
   else{
-    for (var i=0; i<recorrido.apto.length ; i ++){
-      if (recorrido.apto[i] == movilidad_valor.toLowerCase())
+      if (recorrido.apto == movilidad_valor.toLowerCase())
        return true;
     }
-    return false;
-  }
+  
 }
 
 function chequearCategoria(recorrido,categoria_valor){
@@ -188,7 +166,7 @@ function mostrarRecorridos(cumplen){
 
         //Crea un card con los datos correspondientes al recorrido que debe ser mostrado.
         stringCumple[cantCumple] = "<div class='card' style='width: 22rem;'><br><a href="+stringHtml+
-          " target='_blank'><img class='card-img-top' src="+recorridoEnMapa.puntos[0].imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+
+          " target='_blank'><img class='card-img-top' src="+recorridoEnMapa.imagen+"><br><div class='card-body'><br> <h5 class='card-title'>"+
           recorridoEnMapa.nombre+"</h5></a><br><p align='justify' class='card-text'>"+recorridoEnMapa.descripcion_breve+
           "</p><br><a href='#' class='btn btn-secondary' onclick='cargarEnMapa(\""+recorridoEnMapa.nombre+"\");'>Cargar en mapa</a> </div></div>";
 
@@ -325,43 +303,6 @@ function changeStyle(){
 }
 
 
-
-
-var logout_event = function(response) {
-  //alert("antes del logout "+user_id);
-  user_id=undefined;
-  //alert("despues del logout "+user_id);
-  window.location.reload(false);
-  }
-
-var login_event = function(response) {
-  FB.getLoginStatus(function(response) {
-        //alert("antes del login "+user_id);
-         user_id=response.authResponse.userID;
-        // alert("despues del login "+user_id);
-         window.location.reload(false);
-       });
-
-  }
-
- 
-function statusChangeCallback(response){
-  alert("entre a status change callback");
-     if (response.status === 'connected') {
-       var uid = response.authResponse.userID;
-       var accessToken = response.authResponse.accessToken;
-     } 
-}
-
-(function(d, s, id){
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {
-    return;
-  }
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
 
 

@@ -2,7 +2,7 @@ mixin outputCard(recorrido)
  .col-md-4
   .card(style='width: 18rem;')
     a(href="https://ciudadesturisticas.herokuapp.com/"+recorrido.nombre_url+"" target='_blank')
-      img.card-img-top(src=recorrido.puntos[0].imagen)
+      img.card-img-top(src=recorrido.imagen)
     .card-body
       a(href="https://ciudadesturisticas.herokuapp.com/"+recorrido.nombre_url+"" target='_blank')
         h5.card-title=recorrido.nombre

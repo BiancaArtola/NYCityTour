@@ -1,22 +1,6 @@
 const mongoose = require('mongoose');
 
 const esquemaPuntos = new mongoose.Schema({
-  nombre: {
-    type: String,
-    required: true
-  },
-  direccion: {
-    type: String,
-    required: true
-  },
-  imagen: {
-  	type: String,
-    required: true
-  },
-  coordenadas: {
-  	type: [Number],
-  	required: true
-  },
   place_id: {
     type: String,
     required: true
@@ -51,7 +35,7 @@ const esquemaRecorridos = new mongoose.Schema({
     required: true
   },
   apto: {
-    type: [String],
+    type: String,
     required: true
   },
   puntos: {
@@ -59,6 +43,10 @@ const esquemaRecorridos = new mongoose.Schema({
   	required: true
   },
   descripcion_breve: {
+    type: String,
+    required: true
+  },
+  imagen: {
     type: String,
     required: true
   }
