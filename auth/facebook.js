@@ -9,9 +9,12 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log("ESTOYYYYY ACAAAA");
-    console.log(User);
+    //console.log(User);
     User.findOrCreate({name: profile.displayName}, {name: profile.displayName,userid: profile.id}, function(err, user) {
-      if (err) { return done(err); }
+      if (err) { 
+        console.log("HUBO UN ERROR");
+        return done(err); }
+        console.log("todo BIEN");
       done(null, user);
     });
   }
