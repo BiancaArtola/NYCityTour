@@ -11,6 +11,7 @@ passport.use(new FacebookStrategy({
     console.log("ESTOYYYYY ACAAAA");
     //console.log(User);
     User.findOrCreate({name: profile.displayName}, {name: profile.displayName,userid: profile.id}, function(err, user) {
+      console.log("acaaaaaaaaaaaaaa a ntes");
       if (err) { 
         console.log("HUBO UN ERROR");
         return done(err); }
