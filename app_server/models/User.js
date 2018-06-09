@@ -8,4 +8,4 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.statics.findOrCreate = require("find-or-create");
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema,'User');
