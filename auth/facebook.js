@@ -8,6 +8,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://ciudadesturisticas.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log("ESTOYYYYY ACAAAA");
     User.findOrCreate({name: profile.displayName}, {name: profile.displayName,userid: profile.id}, function(err, user) {
       if (err) { return done(err); }
       done(null, user);
