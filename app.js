@@ -7,6 +7,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var session = require('express-session');
 var auth = require('./app_server/routes/auth');
+var mongoose = require('mongoose');
 
 require('./app_server/models/db');
 
