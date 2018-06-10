@@ -14,7 +14,11 @@ var indexRouter = require('./app_server/routes/index');
 var apiRouter = require('./app_server/routes/api');
 var usersRouter= require('./app_server/routes/users');
 
+mongoose.Promise = global.Promise;
 
+mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds014648.mlab.com:14648/recorridos', { useMongoClient: true })
+  .then(() =>  console.log('connection successful'))
+  .catch((err) => console.error(err));
 
 
 var app = express();
