@@ -11,9 +11,9 @@ mixin outputCard(recorrido)
 
 mixin pointCard(punto)
  .col-md-3
-    .card(style='width: 18rem;' id=punto.place_id)
-      img#imagen_punto1.card-img-top(src='..' alt='Card image cap' name="imagen_"+punto.place_id)
+    .card(style='width: 18rem;' id=punto)
+      img#imagen_punto1.card-img-top(src='..' alt='Card image cap' name="imagen_"+punto)
       .card-body
-        h5#titulo_punto1.card-title(name="titulo_"+punto.place_id) #{punto.place_id}
-        p#direccion_punto1.card-text(name="direccion_"+punto.place_id)
+        h5#titulo_punto1.card-title(name="titulo_"+punto) 
+        p#direccion_punto1.card-text(name="direccion_"+punto)
           | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.

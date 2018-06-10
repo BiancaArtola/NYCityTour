@@ -196,7 +196,7 @@ function cargarEnMapa(nombre){
       var service = new google.maps.places.PlacesService(map);
      
 
-      service.getDetails({ placeId: reco.puntos[i].place_id }, function(place, status) {
+      service.getDetails({ placeId: reco.puntos[i] }, function(place, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             var marker=new google.maps.Marker({
               position: place.geometry.location,

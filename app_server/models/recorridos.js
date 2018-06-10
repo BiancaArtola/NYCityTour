@@ -1,13 +1,5 @@
 const mongoose = require('mongoose');
 
-const esquemaPuntos = new mongoose.Schema({
-  place_id: {
-    type: String,
-    required: true
-  }
-
-})
-
 
 const esquemaRecorridos = new mongoose.Schema({
   nombre: {
@@ -39,7 +31,7 @@ const esquemaRecorridos = new mongoose.Schema({
     required: true
   },
   puntos: {
-  	type: [esquemaPuntos],
+  	type: [String],
   	required: true
   },
   descripcion_breve: {

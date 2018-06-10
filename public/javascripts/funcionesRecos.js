@@ -64,19 +64,19 @@ function obtenerPuntos(punto){
 	let map = new google.maps.Map(document.createElement('div'));
 	this.googlePlaces = new google.maps.places.PlacesService(map);
     this.googlePlaces.getDetails({
-          placeId: punto.place_id
+          placeId: punto
         },  function(place, status) { 
 
         	var puntoNombre = punto.nombre;
 	
-		document.getElementsByName("titulo_"+punto.place_id)[0].innerHTML = place.name;	
+		document.getElementsByName("titulo_"+punto)[0].innerHTML = place.name;	
 
 		var direccionPunto = punto.direccion;
-		document.getElementsByName("direccion_"+punto.place_id)[0].innerHTML = place.formatted_address;
+		document.getElementsByName("direccion_"+punto)[0].innerHTML = place.formatted_address;
 		
 
 		var imagen = place.photos[0].getUrl({ 'maxWidth': 1000, 'maxHeight': 1000 });
-		var lugarImagen = document.getElementsByName("imagen_"+punto.place_id)[0].setAttribute('src',imagen);
+		var lugarImagen = document.getElementsByName("imagen_"+punto)[0].setAttribute('src',imagen);
 
         });
 	
