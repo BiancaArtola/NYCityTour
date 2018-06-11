@@ -3,23 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
 var session = require('express-session');
 var auth = require('./app_server/routes/auth');
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 require('./app_server/models/db');
 
 var indexRouter = require('./app_server/routes/index');
 var apiRouter = require('./app_server/routes/api');
 var usersRouter= require('./app_server/routes/users');
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://user:user@ds014648.mlab.com:14648/recorridos', { useMongoClient: true })
-  .then(() =>  console.log('connection successful'))
-  .catch((err) => console.error(err));
 
 
 var app = express();
@@ -39,14 +32,17 @@ app.use('/api',apiRouter);
 app.use('/auth', auth);
 app.use('/users',usersRouter);
 
-app.use(session({
-  secret: 's3cr3t',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
+passport.use(new FacebookStrategy({
+    clientID: 863010233882857,
+    clientSecret: dd7552c54381d2729ef9c03d46633628,
+    callbackURL: "https://ciudadesturisticas.herokuapp.com/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -64,5 +60,14 @@ app.use(function(err, req, res, next) {
 });
 
 
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 module.exports = app;
