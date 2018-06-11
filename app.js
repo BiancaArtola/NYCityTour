@@ -4,15 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-var auth = require('./app_server/routes/auth');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 require('./app_server/models/db');
 
 var indexRouter = require('./app_server/routes/index');
 var apiRouter = require('./app_server/routes/api');
-var usersRouter= require('./app_server/routes/users');
 
 
 var app = express();
@@ -29,12 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/recorridos',indexRouter);
 app.use('/api',apiRouter);
-app.use('/auth', auth);
-app.use('/users',usersRouter);
 
 passport.use(new FacebookStrategy({
-    clientID: 863010233882857,
-    clientSecret: dd7552c54381d2729ef9c03d46633628,
+    clientID: "863010233882857",
+    clientSecret: "dd7552c54381d2729ef9c03d46633628",
     callbackURL: "https://ciudadesturisticas.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {

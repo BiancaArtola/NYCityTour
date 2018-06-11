@@ -5,4 +5,3 @@ mongoose.connect(dbURI);
 
 require('./recorridos');
 require('./estilos');
-require('./User');
