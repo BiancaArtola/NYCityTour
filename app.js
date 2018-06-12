@@ -5,8 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var mongoose = require('mongoose');
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
+var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
+
+// Importamos el modelo usuario y la configuración de passport
+require('./app_server/models/usuarioFacebook');
+require('./passport');
 
 require('./app_server/models/db');
 
@@ -29,18 +32,6 @@ app.use('/', indexRouter);
 app.use('/recorridos',indexRouter);
 app.use('/api',apiRouter);
 
-passport.use(new FacebookStrategy({
-    clientID: "863010233882857",
-    clientSecret: "dd7552c54381d2729ef9c03d46633628",
-    callbackURL: "https://ciudadesturisticas.herokuapp.com/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -56,15 +47,27 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Configuración de Passport. Lo inicializamos
+// y le indicamos que Passport maneje la Sesión
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(app.router);
 
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
+/* Rutas de Passport */
+// Ruta para desloguearse
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+// Ruta para autenticarse con Facebook (enlace de login)
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+// Ruta de callback, a la que redirigirá tras autenticarse con Facebook.
+// En caso de fallo redirige a otra vista '/login'
+app.get('/auth/facebook/callback', passport.authenticate('facebook',
+  { successRedirect: '/', failureRedirect: '/login' }
+));
+
 
 module.exports = app;
