@@ -9,7 +9,4 @@ var passport = require('passport');
 router.get('/', ctrlMain.index);
 router.get('/recorridos/:id', ctrlRecorridos.reco);
 
-
-
-
 module.exports = router;

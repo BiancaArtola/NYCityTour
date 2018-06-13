@@ -5,11 +5,11 @@ var Schema = mongoose.Schema;
 
 // Campos que vamos a guardar en la base de datos
 var UserSchema = new Schema({
-		facebookID: String,
+	facebookID: String,
 	facebookEmail: String,
 	facebookName: String
 });
 
-// Exportamos el modelo 'User' para usarlo en otras
+// Exportamos el modelo 'usuarioFacebook' para usarlo en otras
 // partes de la aplicación
 module.exports = mongoose.model('usuarioFacebook', UserSchema);
