@@ -31,30 +31,29 @@ module.exports = function(passport) {
 		clientID			: '863010233882857',
 		clientSecret	: 'dd7552c54381d2729ef9c03d46633628',
 		callbackURL	 : 'https://ciudadesturisticas.herokuapp.com/auth/facebook/callback',
-		profileFields : ['id', 'displayName', /*'provider',*/ 'photos']
+		profileFields : ['id', 'displayName', /*'provider',*/ 'emails']
 	}, function(accessToken, refreshToken, profile, done) {
-		// El campo 'profileFields' nos permite que los campos que almacenamos
-		// se llamen igual tanto para si el usuario se autentica por Twitter o
-		// por Facebook, ya que cada proveedor entrega los datos en el JSON con
-		// un nombre diferente.
-		// Passport esto lo sabe y nos lo pone más sencillo con ese campo
-		User.findOne({provider_id: profile.id}, function(err, user) {
-			if(err) throw(err);
-			if(!err && user!= null) return done(null, user);
+    	process.nextTick(function(){
+    		User.findOne({'facebookID': profile.id}, function(err, user){
+    			if(err)
+    				return done(err);
+    			if(user)
+    				return done(null, user);
+    			else {
+    				newUser = new User({
+                        facebookID: profile.id,
+                        facebookEmail: profile.emails[0].value,
+                        facebookName: profile.displayName
+                    });
 
-			// Al igual que antes, si el usuario ya existe lo devuelve
-			// y si no, lo crea y salva en la base de datos
-			var user = new User({
-				provider_id	: profile.id,
-				provider		 : profile.provider,
-				name				 : profile.displayName,
-				photo				: profile.photos[0].value
-			});
-			user.save(function(err) {
-				if(err) throw err;
-				done(null, user);
-			});
-		});
-	}));
+                    newUser.save(function(err, newUser) {
+                        if(err) return done(err);
+                        done(null, newUser);
+                    });
+    			}
+    		});
+    	});
+    }));
+
 
 };

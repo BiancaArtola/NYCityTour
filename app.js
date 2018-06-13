@@ -16,7 +16,7 @@ var apiRouter = require('./app_server/routes/api');
 var authRouter = require('./app_server/routes/auth');
 
 
-require('./passport')(passport);
+
 app.use('/auth', authRouter);
 app.set('views', path.join(__dirname,'app_server','views'));
 app.set('view engine', 'pug');
