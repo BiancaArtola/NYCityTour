@@ -3,7 +3,6 @@ const recorridos=mongoose.model('recorridos');
 
 /* GET home page. */
 const index = function(req, res) {
-  console.log("EL USUARIO ESSSSSSSSSSSSSSSSSSSSSSSS "+req.isAuthenticated());
   recorridos
     .find()
     .exec((err, recorridos) => {
@@ -12,7 +11,8 @@ const index = function(req, res) {
       } else {
         res.render('index', {
           title: 'Ciudades Turisticas', 
-          recorridos: recorridos 
+          recorridos: recorridos,
+          user: req.isAuthenticated() 
         });
       }
     })

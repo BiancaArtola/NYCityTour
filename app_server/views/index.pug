@@ -18,9 +18,13 @@ block content
         .col-md-8
          a.nav_link(onclick='changeStyle()', style='cursor:pointer')
            b Cambiar estilo
-        .col-md-4
-         #botonfb.a.nav_link(href='https://ciudadesturisticas.herokuapp.com/auth/facebook', style='cursor:pointer')
-           b LogIn
+        .col-md-4         
+           if user
+            a.nav_link(href='https://ciudadesturisticas.herokuapp.com/auth/facebook')
+             b LogIn
+           else
+            a.nav_link(href='https://ciudadesturisticas.herokuapp.com/auth/logout')
+             b Logout
 
           
   hr
