@@ -37,6 +37,7 @@ function obtenerDatosRecorridos(myArr){
 	//Obtengo nombre
 	var nombre = reco.nombre;
     var stringNombre= "<p><h1><strong>"+nombre+"</strong></h1>";
+    document.getElementById("titulo").innerHTML= stringNombre;
 	document.getElementById("nombre_recorrido").innerHTML= stringNombre;
 
 	//Obtengo tarifa
@@ -90,7 +91,6 @@ function getNumeroRecorrido(myArr,nombreRecorrido){
 	
 		if (myArr[i].nombre_url===nombreRecorrido)
 		{
-			alert(nombreRecorrido);
 			return myArr[i];
 		}
 	}	

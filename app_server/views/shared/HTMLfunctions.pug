@@ -4,7 +4,7 @@ mixin outputCard(recorrido)
     a(href="https://ciudadesturisticas.herokuapp.com/"+recorrido.nombre_url+"" target='_blank')
       img.card-img-top(src=recorrido.imagen)
     .card-body
-      a(href="https://ciudadesturisticas.herokuapp.com/"+recorrido.nombre_url+"" target='_blank')
+      a(href="https://ciudadesturisticas.herokuapp.com/recorridos/"+recorrido.nombre_url+"" target='_blank')
         h5.card-title=recorrido.nombre
       p.card-text(align='justify')=recorrido.descripcion_breve
       a.btn.btn-secondary(href='#' onclick="cargarEnMapa('"+ recorrido.nombre +"')") Cargar en mapa

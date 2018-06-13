@@ -4,7 +4,6 @@ const recorridos = mongoose.model('recorridos');
 const estilos=mongoose.model('estilos');
 
 const getRecorridos = function (req, res) {
-  console.log("hola");
   recorridos
     .find()
     .exec((err, Recs) => {
