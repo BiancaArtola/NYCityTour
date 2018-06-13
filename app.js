@@ -16,6 +16,14 @@ var indexRouter = require('./app_server/routes/index');
 var apiRouter = require('./app_server/routes/api');
 var authRouter = require('./app_server/routes/auth');
 
+
+app.use(Session({
+    secret: 'your-random-secret-19890913007',
+    resave: true,
+    saveUninitialized: true
+}));
+
+
 require('./passport')(passport);
 
 // Configuración de Passport. Lo inicializamos
@@ -26,12 +34,6 @@ app.use(passport.session());
 app.use('/auth', authRouter);
 app.set('views', path.join(__dirname,'app_server','views'));
 app.set('view engine', 'pug');
-
-app.use(Session({
-    secret: 'your-random-secret-19890913007',
-    resave: true,
-    saveUninitialized: true
-}));
 
 app.use(logger('dev'));
 app.use(express.json());
