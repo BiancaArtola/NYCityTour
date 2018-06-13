@@ -3,6 +3,7 @@ const recorridos=mongoose.model('recorridos');
 
 /* GET home page. */
 const index = function(req, res) {
+  console.log("EL USUARIO ESSSSSSSSSSSSSSSSSSSSSSSS "+req.user);
   recorridos
     .find()
     .exec((err, recorridos) => {

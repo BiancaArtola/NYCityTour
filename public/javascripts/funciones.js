@@ -5,15 +5,12 @@ var user_id;
 var lastOpenedInfoWindow;
 
 $(function() { 
-    //alert("entre a la funcin de inicio")
          $.get("./api/recorridos", function (Recorridos) 
           {
           recorridos=Recorridos;      
           });
-          //alert("2 el userid aca es "+user_id);
            $.get("./api/estilos?user="+user_id,function (estilos) 
              {
-          //alert("traje el estilo "+estilos[0].style);
          if(estilos[0]!=undefined){
             var estilo=estilos[0].style;
             loadStyle(estilo);
@@ -21,12 +18,8 @@ $(function() {
             loadStyle(localStorage.getItem("estilo"));
          
             });
-         // alert("3 el userid aca es "+user_id);
-
        });
       
-
-
 
 function initMap() {
   // Create a map object and specify the DOM element for display.
@@ -265,7 +258,6 @@ function loadStyle(numeroEstilo){
 }
 
 function changeStyle(){
-  alert("el userid aca es "+user_id);
   var txt=document.getElementById("esti").getAttribute('href');
   if(txt=="/stylesheets/estilo1.css") {
     var data={ "user": user_id,"newstyle": 2 };

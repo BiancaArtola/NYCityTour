@@ -16,7 +16,8 @@ router.get('/facebook', passport.authenticate('facebook'));
 // Ruta de callback, a la que redirigirá tras autenticarse con Facebook.
 // En caso de fallo redirige a otra vista '/login'
 router.get('/facebook/callback', passport.authenticate('facebook',
-  { successRedirect: '/', failureRedirect: '/login' }
+  { successRedirect: '/', 
+  failureRedirect: '/login' }
   
 ));
 
