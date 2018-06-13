@@ -30,7 +30,7 @@ module.exports = function(passport) {
 	passport.use(new FacebookStrategy({
 		clientID			: '863010233882857',
 		clientSecret	: 'dd7552c54381d2729ef9c03d46633628',
-		callbackURL	 : '/auth/facebook/callback',
+		callbackURL	 : 'https://ciudadesturisticas.herokuapp.com/auth/facebook/callback',
 		profileFields : ['id', 'displayName', /*'provider',*/ 'photos']
 	}, function(accessToken, refreshToken, profile, done) {
 		// El campo 'profileFields' nos permite que los campos que almacenamos
