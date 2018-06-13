@@ -3,10 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
 var app = express(); 
+var Session = require('express-session');
 
 // Importamos el modelo usuario y la configuración de passport
 require('./app_server/models/usuarioFacebook');
