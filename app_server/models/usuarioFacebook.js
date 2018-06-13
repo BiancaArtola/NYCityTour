@@ -14,4 +14,4 @@ var UserSchema = new Schema({
 
 // Exportamos el modelo 'User' para usarlo en otras
 // partes de la aplicación
-var User = mongoose.model('UsuarioFacebook', UserSchema, 'UsuarioFacebook');
+module.exports = mongoose.model('usuarioFacebook', UserSchema);

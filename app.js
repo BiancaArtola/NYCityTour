@@ -6,19 +6,18 @@ var logger = require('morgan');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
-
+var app = express(); 
 // Importamos el modelo usuario y la configuración de passport
 require('./app_server/models/usuarioFacebook');
-require('./passport');
-
 require('./app_server/models/db');
 
 var indexRouter = require('./app_server/routes/index');
 var apiRouter = require('./app_server/routes/api');
+var authRouter = require('./app_server/routes/auth');
 
 
-var app = express();
-
+require('./passport')(passport);
+app.use('/auth', authRouter);
 app.set('views', path.join(__dirname,'app_server','views'));
 app.set('view engine', 'pug');
 
@@ -51,23 +50,7 @@ app.use(function(err, req, res, next) {
 // y le indicamos que Passport maneje la Sesión
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(app.router);
 
-/* Rutas de Passport */
-// Ruta para desloguearse
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-// Ruta para autenticarse con Facebook (enlace de login)
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-// Ruta de callback, a la que redirigirá tras autenticarse con Facebook.
-// En caso de fallo redirige a otra vista '/login'
-app.get('/auth/facebook/callback', passport.authenticate('facebook',
-  { successRedirect: '/', failureRedirect: '/login' }
-));
 
 
 module.exports = app;

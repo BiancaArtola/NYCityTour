@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('UsuarioFacebook');
+var User = mongoose.model('usuarioFacebook');
 
 // Estrategia de autenticación con Facebook
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -28,8 +28,8 @@ module.exports = function(passport) {
 
 	// Configuración del autenticado con Facebook
 	passport.use(new FacebookStrategy({
-		clientID			: config.facebook.key,
-		clientSecret	: config.facebook.secret,
+		clientID			: '863010233882857',
+		clientSecret	: 'dd7552c54381d2729ef9c03d46633628',
 		callbackURL	 : '/auth/facebook/callback',
 		profileFields : ['id', 'displayName', /*'provider',*/ 'photos']
 	}, function(accessToken, refreshToken, profile, done) {
